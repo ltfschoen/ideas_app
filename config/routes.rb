@@ -1,4 +1,6 @@
 IdeasApp::Application.routes.draw do
+  resources :categories
+
   resources :ideas
 
   devise_for :users
