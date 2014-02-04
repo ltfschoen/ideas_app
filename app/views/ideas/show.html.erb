@@ -11,8 +11,18 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @idea.user %>
+  <strong>Author:</strong>
+  <%= @idea.author %>
+</p>
+
+<p>
+  <strong>URL:</strong>
+  <%= @idea.url %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @idea.country %>
 </p>
 
 <%= link_to 'Edit', edit_idea_path(@idea) %> |

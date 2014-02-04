@@ -5,6 +5,19 @@ application up and running.
 
 Things you may want to cover:
 
+* Purpose of app
+
+Scalable business app targeting startup entrepreneurs.
+
+Goal is for a fast, user friendly, accessible, and reliable idea comparison tool.
+
+Top ideas are prioritised depending on inspection by guru's of the extent of startup entrepreneurship evidence available, and their social rating.
+
+Displays results using trusted Google Trend API as one-stop-shop to power resourcing, relocation, and other investment decisions by angel investors and venture capitalists.
+
+Structured and dynamic stack enables adaptability to other exciting API's to source and compare against further secondary data.
+ 
+
 * Ruby version
 
 * System dependencies

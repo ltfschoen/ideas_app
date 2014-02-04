@@ -4,11 +4,13 @@ IdeasApp::Application.routes.draw do
   resources :ideas
 
   devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
+  
   root 'ideas#index'
+
+end
+
+
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -58,4 +60,3 @@ IdeasApp::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end
