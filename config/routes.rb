@@ -1,4 +1,8 @@
 IdeasApp::Application.routes.draw do
+  get "static_pages/home"
+  get "static_pages/about_us"
+  get "static_pages/contact_us"
+  get "static_pages/help"
   resources :categories
 
   resources :ideas
