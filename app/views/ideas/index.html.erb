@@ -1,31 +1,105 @@
 <h1>Listing ideas</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<%# if !params[:robot_id].nil? %>
+<%# end %>
 
-  <tbody>
-    <% @ideas.each do |idea| %>
-      <tr>
-        <td><%= idea.name %></td>
-        <td><%= idea.description %></td>
-        <td><%= idea.user %></td>
-        <td><%= link_to 'Show', idea %></td>
-        <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
-        <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
+<div class="sorting">
+	<p>Sort By: Selected | Unselected | All | <%= link_to 'Display All Ideas', '/', method: :get, data: { confirm: 'Are you sure?' } %></p>
+</div>
+
+<div style="display: inline-block;">
+
+	<table style="border: 1px solid black; ">
+	  <thead>
+	    <tr>
+	      <th style="text-align:center">Name</th>
+	      <th>Description</th>
+	      <th>User</th>
+	      <th>Worthy?</th>
+	      
+	      <% if params[:detail].present? %>
+		  	<th>Author</th>
+		  	<th>URL</th>
+		  	<th>Country</th>
+		  <% end %>
+
+	      <th>Show</th>
+	      <th>Edit</th>
+	      <th>Destroy</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+
+<!-- FORM START -->
+
+	  	<%= form_tag '/', :method => 'get' do %>
+
+	  	<% @ideas.each do |idea| %>
+	      <tr>
+	        <td><%= idea.name %></td>
+	        <td><%= idea.description %></td>
+
+			<!-- SAMPLE CODE ONLY -->
+				  <!--
+					<%# x = Robot.find_by_id(idea.robot_id) %>
+					<%# if !x.blank? %>
+						<td style="text-align:center"><%#= link_to idea.robot_id, robot_path(idea.robot_id) %></td>
+					<%# elsif x.blank? %>
+						<td style="text-align:center"><%#= link_to (idea.robot_id.to_s + ", but deleted!, reassign?"), edit_idea_path(idea) %></td>
+					<%# end %>
+				  -->
+				
+
+			<!-- USER -->
+			      <% if !idea.user.nil? %> 
+			        <td><%= idea.user %></td>
+			      <% elsif %>
+			      	<td></td>
+				  <% end %>
+
+			<!-- FORM TAGS -->
+
+			<td style="text-align:center; vertical-align: top;">
+		          <%= label_tag :search %>
+		          <%= check_box_tag 'search[]', idea.id, false %>
+		          <%#= check_box(:accepted, 'false', selected:false) %>
+	        </td>
+
+			<!-- IDEA DETAILS (IF FILTERED) -->
+			      <% if params[:detail].present? %>
+			      	<% if !idea.author.nil? %> 
+			        	<td><%= idea.author %></td>
+			        <% end %>
+			        <% if !idea.url.nil? %> 
+			        	<td><%= idea.url %></td>
+			        <% end %>
+			        <% if !idea.country.nil? %> 
+			        	<td><%= idea.country %></td>
+					<% end %>
+				  <% end %>
+
+
+			<!-- NOT SHOW WHEN UPLOADED TO HEROKU -->
+	        <td><%#= link_to 'Show', idea %></td>
+	        <td><%#= link_to 'Edit', edit_idea_path(idea) %></td>
+	        <td><%#= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+	      </tr>
+	    <% end %>
+
+		
+		<%= image_submit_tag("button.png")  %>
+
+		<% end %> 
+<!-- FORM END -->
+
+	  </tbody>
+	</table>
+	
+</div>
 <br>
 
 <%= link_to 'New Idea', new_idea_path %>
+
