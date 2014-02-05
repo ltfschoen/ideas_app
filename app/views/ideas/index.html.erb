@@ -8,7 +8,6 @@
 	  	<%= form_tag '/ideas', :method => 'get' do %>
 
 <div class="sorting">
-	<p><%= link_to 'Show All', '/', method: :get, data: { confirm: 'Are you sure?' } %></p>
 
 	<p>
 			<%= label_tag(:search, "Find Ideas:") %>  
@@ -26,9 +25,17 @@
 	      <th style="text-align:center">Name</th>
 	      <th>Description</th>
 	      <th>User</th>
-	      <th>Worthy?</th>
-	      
-	      <% if params[:detail].present? %>
+
+		<% if !@lock_select %>  
+		  <th>Worthy?</th>
+	    <% elsif @lock_select %>
+	    	<td></td>
+	    <% else %>
+	    	raise "error lock select"
+        <% end %>
+
+	      <%# if params[:detail].present? %>
+	      <% if @detail && @lock_select_submit %>
 		  	<th>Author</th>
 		  	<th>URL</th>
 		  	<th>Country</th>
@@ -72,14 +79,21 @@
 
 			<!-- FORM TAGS -->
 
+		<% if !@lock_select %>  
 			<td style="text-align:center; vertical-align: top;">
 		          <%= label_tag :filter, "" %>
 		          <%= check_box_tag 'filter[]', idea.id, false %>
 		          <%#= check_box(:accepted, 'false', selected:false) %>
 	        </td>
+	    <% elsif @lock_select %>
+	    	<td></td>
+	    <% else %>
+	    	raise "error lock select"
+        <% end %>
 
 			<!-- IDEA DETAILS (IF FILTERED) -->
-			      <% if params[:detail].present? %>
+			      <%# if params[:detail].present? %>
+			      <% if @detail && @lock_select_submit %>
 			      	<% if !idea.author.nil? %> 
 			        	<td><%= idea.author %></td>
 			        <% end %>
@@ -103,25 +117,33 @@
 	      </tr>
 	    <% end %>
 
-		
-		<div style="display: inline-block; float: right;"><%= image_submit_tag("button.png")  %></div>
 
-		<% end %> 
-<!-- FORM END -->
+	<% if !@lock_select_submit %>  
+		<div style="display: inline-block; float: right;"><%= image_submit_tag("button.png", data: { disable_with: "Please wait.." })  %></div>
+	<% elsif @lock_select_submit %>
+		<div>
+			<p><%= link_to 'Show All', '/', method: :get, data: { confirm: 'Are you sure?' } %>
+			</p>
+		</div>
 
-		<%= form_tag '/ideas', :method => 'get' do %>
-
-		<div style="display: inline-block; float: right;">
+  		<div style="display: inline-block; float: right;">
 
 			<p>
-			<%= label_tag(:details, "") %>  
-			<%#= text_field_tag(:details) %> 
-			<%= submit_tag("Proceed") %>
+			<%= label_tag(:detail, "") %>  
+			<%#= text_field_tag(:detail) %> 
+			<%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }) %>
 			</p>
 
 		</div>
 
+	<% else %>
+		raise "error lock select"
+	<% end %>
+
 		<% end %> 
+<!-- FORM END -->
+
+
 	  </tbody>
 	</table>
 	

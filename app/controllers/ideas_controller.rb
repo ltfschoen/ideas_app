@@ -8,14 +8,30 @@ class IdeasController < ApplicationController
 
 #<%= highlight('You searched for rails', 'rails')
 
+	if params[:detail].present? #|| params[:commit].present?
+    	@ideas = Idea.where(:name => params[:search])
+    	@detail = true
+    	@lock_select = true
+    	@lock_select_submit = true
+    end
+
 	if params[:search].present?
     	@ideas = Idea.where(:name => params[:search])
+    	@detail = true
+    	@lock_select = true
+    	@lock_select_submit = true
     end
 
 	if params[:filter].present?
     	@ideas = Idea.where(:id => params[:filter])
+       	@detail = true
+    	@lock_select = true
+    	@lock_select_submit = true
   	else
   		@ideas = Idea.all
+  		@detail = true
+  		@lock_select = false
+    	@lock_select_submit = false
     end
 
   end
