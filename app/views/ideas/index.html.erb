@@ -109,6 +109,19 @@
 		<% end %> 
 <!-- FORM END -->
 
+		<%= form_tag '/ideas', :method => 'get' do %>
+
+		<div style="display: inline-block; float: right;">
+
+			<p>
+			<%= label_tag(:details, "") %>  
+			<%#= text_field_tag(:details) %> 
+			<%= submit_tag("Proceed") %>
+			</p>
+
+		</div>
+
+		<% end %> 
 	  </tbody>
 	</table>
 	
