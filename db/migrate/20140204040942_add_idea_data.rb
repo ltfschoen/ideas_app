@@ -5,15 +5,15 @@ class AddIdeaData < ActiveRecord::Migration
 
   def up
 
-		filename_new = "ideas"
+		filepath = Rails.root.join("ideas.csv")	
 
 		# locate the csv file in your /public folder
-		if File.file?("/#{filename_new}.csv")
-			CSV.foreach("/#{filename_new}.csv")do |col|
+		if File.exist?(filepath)
+			CSV.foreach(filepath)do |col|
 				Idea.create(:name => col[0].to_s, :description => col[1].to_s, :author => col[6].to_s, :url => col[7].to_s, :country => col[8].to_s)
 			end
 		else 
-			raise "No file exists with name: #{filename_new}"
+			raise "No file exists with name: #{filepath}"
 		end
   end
 

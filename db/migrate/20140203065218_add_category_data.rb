@@ -4,10 +4,10 @@ require 'csv'
 class AddCategoryData < ActiveRecord::Migration
   def up
 
-		filename_new = "categories"
+		filepath = Rails.root.join("categories.csv")		
 
-		if File.file?("/#{filename_new}.csv")
-			CSV.foreach("/#{filename_new}.csv")do |col|
+		if File.exist?(filepath)
+			CSV.foreach(filepath)do |col|
 				Category.create(:name => col[0].to_s, :description => col[1].to_s)
 			end
 		else 
