@@ -6,8 +6,8 @@ class AddCategoryData < ActiveRecord::Migration
 
 		filename_new = "categories"
 
-		if File.file?("/Users/Luke/Documents/w5d1_project/ideas_app/db/#{filename_new}.csv")
-			CSV.foreach("/Users/Luke/Documents/w5d1_project/ideas_app/db/#{filename_new}.csv")do |col|
+		if File.file?("/#{filename_new}.csv")
+			CSV.foreach("/#{filename_new}.csv")do |col|
 				Category.create(:name => col[0].to_s, :description => col[1].to_s)
 			end
 		else 

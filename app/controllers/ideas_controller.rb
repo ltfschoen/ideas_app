@@ -5,7 +5,19 @@ class IdeasController < ApplicationController
   # GET /ideas
   # GET /ideas.json
   def index
-    @ideas = Idea.all
+
+#<%= highlight('You searched for rails', 'rails')
+
+	if params[:search].present?
+    	@ideas = Idea.where(:name => params[:search])
+    end
+
+	if params[:filter].present?
+    	@ideas = Idea.where(:id => params[:filter])
+  	else
+  		@ideas = Idea.all
+    end
+
   end
 
   # GET /ideas/1

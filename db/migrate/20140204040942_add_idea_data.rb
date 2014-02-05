@@ -7,8 +7,9 @@ class AddIdeaData < ActiveRecord::Migration
 
 		filename_new = "ideas"
 
-		if File.file?("/Users/Luke/Documents/w5d1_project/ideas_app/db/#{filename_new}.csv")
-			CSV.foreach("/Users/Luke/Documents/w5d1_project/ideas_app/db/#{filename_new}.csv")do |col|
+		# locate the csv file in your /public folder
+		if File.file?("/#{filename_new}.csv")
+			CSV.foreach("/#{filename_new}.csv")do |col|
 				Idea.create(:name => col[0].to_s, :description => col[1].to_s, :author => col[6].to_s, :url => col[7].to_s, :country => col[8].to_s)
 			end
 		else 

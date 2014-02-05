@@ -3,9 +3,19 @@
 <%# if !params[:robot_id].nil? %>
 <%# end %>
 
+<!-- FORM START -->
+
+	  	<%= form_tag '/ideas', :method => 'get' do %>
 
 <div class="sorting">
-	<p>Sort By: Selected | Unselected | All | <%= link_to 'Display All Ideas', '/', method: :get, data: { confirm: 'Are you sure?' } %></p>
+	<p><%= link_to 'Show All', '/', method: :get, data: { confirm: 'Are you sure?' } %></p>
+
+	<p>
+			<%= label_tag(:search, "Find Ideas:") %>  
+			<%= text_field_tag(:search) %> 
+			<%= submit_tag("Search") %>
+	</p>
+
 </div>
 
 <div style="display: inline-block;">
@@ -24,17 +34,18 @@
 		  	<th>Country</th>
 		  <% end %>
 
-	      <th>Show</th>
+		  <!-- NOT SHOW WHEN UPLOADED TO HEROKU -->
+
+	      <!--<th>Show</th>
 	      <th>Edit</th>
-	      <th>Destroy</th>
+	      <th>Destroy</th>-->
+
 	    </tr>
 	  </thead>
 
 	  <tbody>
 
-<!-- FORM START -->
 
-	  	<%= form_tag '/', :method => 'get' do %>
 
 	  	<% @ideas.each do |idea| %>
 	      <tr>
@@ -62,8 +73,8 @@
 			<!-- FORM TAGS -->
 
 			<td style="text-align:center; vertical-align: top;">
-		          <%= label_tag :search %>
-		          <%= check_box_tag 'search[]', idea.id, false %>
+		          <%= label_tag :filter, "" %>
+		          <%= check_box_tag 'filter[]', idea.id, false %>
 		          <%#= check_box(:accepted, 'false', selected:false) %>
 	        </td>
 
@@ -82,15 +93,18 @@
 
 
 			<!-- NOT SHOW WHEN UPLOADED TO HEROKU -->
+
+			<!--
 	        <td><%#= link_to 'Show', idea %></td>
 	        <td><%#= link_to 'Edit', edit_idea_path(idea) %></td>
 	        <td><%#= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	    -->
 
 	      </tr>
 	    <% end %>
 
 		
-		<%= image_submit_tag("button.png")  %>
+		<div style="display: inline-block; float: right;"><%= image_submit_tag("button.png")  %></div>
 
 		<% end %> 
 <!-- FORM END -->
