@@ -6,38 +6,35 @@ class IdeasController < ApplicationController
   # GET /ideas.json
   def index
 
-#<%= highlight('You searched for rails', 'rails')
+	#<%= highlight('You searched for rails', 'rails')
 
-	if params[:detail].present? #|| params[:commit].present?
-    	@ideas = Idea.where(:name => params[:search])
-    	@detail = true
+	if params[:filter_values].present?
+    	@ideas = Idea.where(:id => params[:filter_values])
     	@lock_select = true
     	@lock_select_submit = true
-    end
-
-	if params[:search].present?
-    	@ideas = Idea.where(:name => params[:search])
-    	@detail = true
-    	@lock_select = true
-    	@lock_select_submit = true
-    end
-
-	if params[:filter].present?
-    	@ideas = Idea.where(:id => params[:filter])
-       	@detail = true
-    	@lock_select = true
-    	@lock_select_submit = true
-  	else
+  	elsif !params[:filter_values].present?
   		@ideas = Idea.all
-  		@detail = true
   		@lock_select = false
     	@lock_select_submit = false
     end
+
+	if params[:idea_name].present?
+    	@ideas = Idea.where(:name => params[:idea_name])
+    	@detail = false
+    	@lock_select = true
+    	@lock_select_submit = true
+    end
+
 
   end
 
   # GET /ideas/1
   # GET /ideas/1.json
+
+  def details
+  	@ideas = Idea.where(:id => params[:ideas_ids])
+  end
+
   def show
   end
 

@@ -1,17 +1,19 @@
 <% provide(:title, 'Nav') %>
 
-<div style="border:4px solid purple; display: inline-block;">Logo</div>
-<div style="border:4px solid purple; display: inline-block;">Partners</div>
-<div style="border:4px solid purple; display: inline-block;">Help</div>
-<div style="border:4px solid purple; display: inline-block; clear: left;">
+<div style="background: #eeddff; display: inline-block;">Logo</div>
+<div style="display: inline-block;">Partners</div>
+<div style="display: inline-block;"><%= link_to 'Help', static_pages_help_path %></div>
+<div style="display: inline-block; clear: left;">
 
 <% if controller.controller_name == "Ideas" %>
 	<div style="border:4px solid purple; display: inline-block; float:right; margin-left: 100px; z-index: -1;">
 		<p><strong>Welcome and Intro:</strong></p>
 		Welcome summary
-		<%= link_to 'XXX', root_path %> |
+		<%= link_to 'Home', root_path %> |
 <% else %>
-		<%= link_to 'YYY', root_path %> 
+		<%= link_to 'Home', root_path %> 
 <% end %>
 	</div>
+
+	
 

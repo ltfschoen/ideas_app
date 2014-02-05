@@ -1,24 +1,18 @@
-<h1>Listing ideas</h1>
 
-<%# if !params[:robot_id].nil? %>
-<%# end %>
 
 <!-- FORM START -->
 
 	  	<%= form_tag '/ideas', :method => 'get' do %>
 
-<div class="sorting">
-
-	<p>
-			<%= label_tag(:search, "Find Ideas:") %>  
-			<%= text_field_tag(:search) %> 
-			<%= submit_tag("Search") %>
-	</p>
-
-</div>
+<% if !@lock_select %>  
+	<h2>Listing ideas:</h2>
+<% elsif @lock_select %>
+	<h2>Filtered ideas:</h2>
+<% else %>
+	raise "error title"
+<% end %>
 
 <div style="display: inline-block;">
-
 	<table style="border: 1px solid black; ">
 	  <thead>
 	    <tr>
@@ -34,12 +28,8 @@
 	    	raise "error lock select"
         <% end %>
 
-	      <%# if params[:detail].present? %>
-	      <% if @detail && @lock_select_submit %>
-		  	<th>Author</th>
-		  	<th>URL</th>
-		  	<th>Country</th>
-		  <% end %>
+
+<!-- REMOVED 1 -->
 
 		  <!-- NOT SHOW WHEN UPLOADED TO HEROKU -->
 
@@ -52,27 +42,14 @@
 
 	  <tbody>
 
-
-
 	  	<% @ideas.each do |idea| %>
 	      <tr>
 	        <td><%= idea.name %></td>
-	        <td><%= idea.description %></td>
-
-			<!-- SAMPLE CODE ONLY -->
-				  <!--
-					<%# x = Robot.find_by_id(idea.robot_id) %>
-					<%# if !x.blank? %>
-						<td style="text-align:center"><%#= link_to idea.robot_id, robot_path(idea.robot_id) %></td>
-					<%# elsif x.blank? %>
-						<td style="text-align:center"><%#= link_to (idea.robot_id.to_s + ", but deleted!, reassign?"), edit_idea_path(idea) %></td>
-					<%# end %>
-				  -->
-				
+	        <td><%= idea.description %></td>		
 
 			<!-- USER -->
 			      <% if !idea.user.nil? %> 
-			        <td><%= idea.user %></td>
+			        <td><%= idea.user_id %></td>
 			      <% elsif %>
 			      	<td></td>
 				  <% end %>
@@ -82,7 +59,8 @@
 		<% if !@lock_select %>  
 			<td style="text-align:center; vertical-align: top;">
 		          <%= label_tag :filter, "" %>
-		          <%= check_box_tag 'filter[]', idea.id, false %>
+		          <%= check_box_tag 'filter_values[]', idea.id, false %>
+				  
 		          <%#= check_box(:accepted, 'false', selected:false) %>
 	        </td>
 	    <% elsif @lock_select %>
@@ -90,20 +68,9 @@
 	    <% else %>
 	    	raise "error lock select"
         <% end %>
+        	
 
-			<!-- IDEA DETAILS (IF FILTERED) -->
-			      <%# if params[:detail].present? %>
-			      <% if @detail && @lock_select_submit %>
-			      	<% if !idea.author.nil? %> 
-			        	<td><%= idea.author %></td>
-			        <% end %>
-			        <% if !idea.url.nil? %> 
-			        	<td><%= idea.url %></td>
-			        <% end %>
-			        <% if !idea.country.nil? %> 
-			        	<td><%= idea.country %></td>
-					<% end %>
-				  <% end %>
+<!-- REMOVED 2 -->
 
 
 			<!-- NOT SHOW WHEN UPLOADED TO HEROKU -->
@@ -118,37 +85,96 @@
 	    <% end %>
 
 
-	<% if !@lock_select_submit %>  
-		<div style="display: inline-block; float: right;"><%= image_submit_tag("button.png", data: { disable_with: "Please wait.." })  %></div>
-	<% elsif @lock_select_submit %>
+	<%# if !@lock_select_submit %>  
+<!--
+		<div style="display: inline-block; float: right;">
+			<%#= link_to 'Create Hunch', '/ideas', method: :get %>
+
+
+			<%#= image_submit_tag("button.png", data: { disable_with: "Please wait.." }) %>
+		</div>
+
+
+
+	<%# elsif @lock_select_submit %>
 		<div>
-			<p><%= link_to 'Show All', '/', method: :get, data: { confirm: 'Are you sure?' } %>
+			<p><%#= link_to 'Show All', '/', method: :get, data: { confirm: 'Are you sure?' } %>
 			</p>
 		</div>
-
-  		<div style="display: inline-block; float: right;">
-
-			<p>
-			<%= label_tag(:detail, "") %>  
-			<%#= text_field_tag(:detail) %> 
-			<%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }) %>
-			</p>
-
-		</div>
-
-	<% else %>
+	<%# else %>
 		raise "error lock select"
-	<% end %>
+	<%# end %>
+-->
+
 
 		<% end %> 
 <!-- FORM END -->
 
-
+<!-- FORM 2 START -->
+	
 	  </tbody>
 	</table>
-	
-</div>
-<br>
 
-<%= link_to 'New Idea', new_idea_path %>
+<div class="sorting">
+
+<h2>Choose Action:</h2>
+	<% if @lock_select_submit %>
+			<p>
+				<ul>
+					<li>List: <%= link_to 'Show All Ideas', '/', method: :get %> 
+				<!-- , data: { confirm: 'Are you sure?' } -->
+					</li>
+				</ul>
+			</p>
+	<% end %>
+    <% if !@lock_select_submit %>
+			<p>
+				<ul>
+					<li><%= label_tag(:search, "Filter:") %>  
+			<%= hidden_field_tag(:idea_name) %>
+			<%= submit_tag("Filter Ideas", data: { disable_with: "Please wait.." }) %>
+					</li>
+				</ul>
+			</p>
+	<% end %>
+			<p>
+				<ul>
+					<li><%= label_tag(:search, "Search:") %>  
+			<%= text_field_tag(:idea_name) %>
+			<%= submit_tag("Search Ideas", data: { disable_with: "Please wait.." }) %>
+					</li>
+				</ul>
+			</p>
+			<p>
+				<ul>
+				    <li>Create: <%= link_to 'New Idea', new_idea_path %>
+				    </li>
+				</ul>
+			</p>
+
+		<%= form_tag '/ideas/details', :method => 'post' do %>
+
+	  		<div>
+
+			    <p>
+			    	<% @ideas.each do |idea| %>
+						<%= hidden_field_tag 'ideas_ids[]', value: idea.id %>
+					
+				    <% end %>
+
+				    <% if @lock_select_submit %>  
+				    	<ul>
+				    		<li>Next: <%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }) %>
+				    		</li>
+				    	</ul>
+				    <% end %>
+				</p>
+
+			</div>
+		<% end %>
+</div>
+
+</div>
+
+
 

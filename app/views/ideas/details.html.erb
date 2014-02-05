@@ -1,0 +1,52 @@
+<h2>Detailed ideas</h2>
+
+<div style="display: inline-block;">
+
+	<table style="border: 1px solid black; ">
+	  <thead>
+	    <tr>
+	      <th style="text-align:center">Name</th>
+	      <th>Description</th>
+	      <th>User</th>
+		  <th></th>
+		  <th>Author</th>
+		  <th>URL</th>
+		  <th>Country</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+
+	  	<% @ideas.each do |idea| %>
+	      <tr>
+	        <td><%= idea.name %></td>
+	        <td><%= idea.description %></td>
+
+			<!-- USER -->
+
+		    <% if !idea.user.nil? %> 
+		        <td><%= idea.user %></td>
+		    <% elsif %>
+		        <td></td>
+			<% end %>
+
+			<!-- IDEA DETAILS (IF FILTERED) -->
+		    <% if !idea.author.nil? %> 
+		        <td><%= idea.author %></td>
+		    <% end %>
+		    <% if !idea.url.nil? %> 
+		        <td><%= idea.url %></td>
+		    <% end %>
+		    <% if !idea.country.nil? %> 
+		        <td><%= idea.country %></td>
+			<% end %>
+		  </tr>
+		<% end %>
+	  </tbody>
+	</table>
+</div>
+
+
+
+
+
