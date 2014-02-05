@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+
     @user = resource_name.users.new
+	@user.image = nil
+  	@user_random_name = ('A'..'Z').to_a.sample(3).join + rand(10000...999999).to_s
+	@user.image = "http://robohash.org/" + @user_random_name
 
   end
 

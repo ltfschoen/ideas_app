@@ -8,10 +8,8 @@ class IdeasController < ApplicationController
 
 	#<%= highlight('You searched for rails', 'rails')
 
-	@robot = nil
-
+	@robot= nil
   	@robot_random_name = ('A'..'Z').to_a.sample(3).join + rand(10000...999999).to_s
-
 	@robot = "http://robohash.org/" + @robot_random_name
 
   	@stage = 1
