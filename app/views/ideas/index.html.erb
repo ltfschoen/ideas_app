@@ -17,11 +17,11 @@
 	  <thead>
 	    <tr>
 	      <th style="text-align:center">Name</th>
-	      <th>Description</th>
-	      <th>User</th>
+	      <th style="text-align:center">Description</th>
+	      <th style="text-align:center">User</th>
 
 		<% if !@lock_select %>  
-		  <th>Worthy?</th>
+		  <th style="text-align:center">Worthy?</th>
 	    <% elsif @lock_select %>
 	    	<td></td>
 	    <% else %>
@@ -33,9 +33,9 @@
 
 		  <!-- NOT SHOW WHEN UPLOADED TO HEROKU -->
 
-	      <!--<th>Show</th>
-	      <th>Edit</th>
-	      <th>Destroy</th>-->
+	      <th style="text-align:center;">Show</th>
+	      <th style="text-align:center;">Edit</th>
+	      <!--<th style="text-align:center;">Destroy</th>-->
 
 	    </tr>
 	  </thead>
@@ -44,12 +44,12 @@
 
 	  	<% @ideas.each do |idea| %>
 	      <tr>
-	        <td><%= idea.name %></td>
-	        <td><%= idea.description %></td>		
+	        <td style="text-align:center"><%= idea.name %></td>
+	        <td style="text-align:center"><%= idea.description %></td>		
 
 			<!-- USER -->
 			      <% if !idea.user.nil? %> 
-			        <td><%= idea.user_id %></td>
+			        <td style="text-align:center"><%= idea.user_id %></td>
 			      <% elsif %>
 			      	<td></td>
 				  <% end %>
@@ -64,6 +64,7 @@
 		          <%#= check_box(:accepted, 'false', selected:false) %>
 	        </td>
 	    <% elsif @lock_select %>
+	    	<%= hidden_field_tag 'ideas_ids[]', idea.id %>
 	    	<td></td>
 	    <% else %>
 	    	raise "error lock select"
@@ -75,11 +76,11 @@
 
 			<!-- NOT SHOW WHEN UPLOADED TO HEROKU -->
 
-			<!--
-	        <td><%#= link_to 'Show', idea %></td>
-	        <td><%#= link_to 'Edit', edit_idea_path(idea) %></td>
-	        <td><%#= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	    -->
+			
+	        <td style="text-align:center;"><%= link_to 'Show', idea %></td>
+	        <td style="text-align:center;"><%= link_to 'Edit', edit_idea_path(idea) %></td>
+	        <!--<td><%#= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+	    
 
 	      </tr>
 	    <% end %>
@@ -158,7 +159,7 @@
 
 			    <p>
 			    	<% @ideas.each do |idea| %>
-						<%= hidden_field_tag 'ideas_ids[]', value: idea.id %>
+						<%= hidden_field_tag 'ideas_ids[]', idea.id %>
 					
 				    <% end %>
 

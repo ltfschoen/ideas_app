@@ -5,7 +5,11 @@ IdeasApp::Application.routes.draw do
   get "static_pages/help"
   resources :categories
 
-  resources :ideas
+  resources :ideas do
+  	collection do
+  		post :details
+  	end
+  end
 
   devise_for :users
   
