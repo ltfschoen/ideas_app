@@ -1,4 +1,4 @@
-
+<% provide(:title, 'Stage 1') %>
 
 <!-- FORM START -->
 
@@ -43,9 +43,9 @@
 	  <tbody>
 
 	  	<% @ideas.each do |idea| %>
-	      <tr>
+	      <tr style="background-color:<%= cycle("#ffeeff", "#cceeff", name: "colors") -%>">
 	        <td style="text-align:center"><%= idea.name %></td>
-	        <td style="text-align:center"><%= idea.description %></td>		
+	        <td style="text-align:center"><%= truncate(idea.description, length:7) { link_to "Continue", idea } %></td>		
 
 			<!-- USER -->
 			      <% if !idea.user.nil? %> 
@@ -85,6 +85,8 @@
 	      </tr>
 	    <% end %>
 
+    	<% reset_cycle("colors") %>
+
 
 	<%# if !@lock_select_submit %>  
 <!--
@@ -116,13 +118,15 @@
 	  </tbody>
 	</table>
 
+</div>
+
 <div class="sorting">
 
 <h2>Choose Action:</h2>
 	<% if @lock_select_submit %>
-			<p>
+			<p style="background-color: #ff6699">
 				<ul>
-					<li>List: <%= link_to 'Show All Ideas', '/', method: :get %> 
+					<li><strong>List:</strong> <%= link_to 'Show All Ideas', '/', method: :get %> 
 				<!-- , data: { confirm: 'Are you sure?' } -->
 					</li>
 				</ul>
@@ -131,24 +135,26 @@
     <% if !@lock_select_submit %>
 			<p>
 				<ul>
-					<li><%= label_tag(:search, "Filter:") %>  
-			<%= hidden_field_tag(:idea_name) %>
-			<%= submit_tag("Filter Ideas", data: { disable_with: "Please wait.." }) %>
+					<li><strong><%= label_tag(:search, "Search or Filter:") %></strong>  
+			<%= text_field_tag(:idea_name) %>
+			<%= submit_tag("Search or Filter Ideas", data: { disable_with: "Please wait.." }) %>
+					</li>
+				</ul>
+			</p>
+	<% end %>
+	<% if @lock_select_submit %>
+			<p>
+				<ul>
+					<li><strong><%= label_tag(:search, "Search:") %></strong>  
+			<%= text_field_tag(:idea_name) %>
+			<%= submit_tag("Search Ideas", data: { disable_with: "Please wait.." }) %>
 					</li>
 				</ul>
 			</p>
 	<% end %>
 			<p>
 				<ul>
-					<li><%= label_tag(:search, "Search:") %>  
-			<%= text_field_tag(:idea_name) %>
-			<%= submit_tag("Search Ideas", data: { disable_with: "Please wait.." }) %>
-					</li>
-				</ul>
-			</p>
-			<p>
-				<ul>
-				    <li>Create: <%= link_to 'New Idea', new_idea_path %>
+				    <li><strong>Create:</strong> <%= link_to 'New Idea', new_idea_path %>
 				    </li>
 				</ul>
 			</p>
@@ -165,7 +171,7 @@
 
 				    <% if @lock_select_submit %>  
 				    	<ul>
-				    		<li>Next: <%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }) %>
+				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }) %>
 				    		</li>
 				    	</ul>
 				    <% end %>
@@ -175,7 +181,7 @@
 		<% end %>
 </div>
 
-</div>
+
 
 
 

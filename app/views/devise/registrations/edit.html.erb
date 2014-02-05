@@ -12,7 +12,13 @@
   <div><%= f.label :age %><br />
   <%= f.text_field :age %></div>
 
-  <div><%= f.label :kind %><br />
+  <div class="field">
+  	
+    <%= f.label :Type_of_interest_in_idea %><br />
+    <%= f.collection_select :id, Category.all, :id, :name, {prompt: true}, {:include_blank=>true}  %>
+  </div>
+
+  <div><%= f.label :Description_of_individual_or_referral %><br />
   <%= f.text_field :kind %></div>
 
   <div><%= f.label :email %><br />

@@ -17,9 +17,6 @@ IdeasApp::Application.routes.draw do
 
 end
 
-
-
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

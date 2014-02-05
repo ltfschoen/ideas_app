@@ -1,3 +1,7 @@
+<% provide(:title, 'Stage 2') %>
+	    	
+<%= hidden_field_tag 'stage2', true %>
+
 <h2>Detailed ideas</h2>
 
 <div style="display: inline-block;">
@@ -8,7 +12,6 @@
 	      <th style="text-align:center">Name</th>
 	      <th style="text-align:center">Description</th>
 	      <th style="text-align:center">User</th>
-		  <th></th>
 		  <th style="text-align:center">Author</th>
 		  <th style="text-align:center">URL</th>
 		  <th style="text-align:center">Country</th>
@@ -18,14 +21,14 @@
 	  <tbody>
 
 	  	<% @ideas.each do |idea| %>
-	      <tr>
+	      <tr style="background-color:<%= cycle("#ffeeff", "#cceeff", name: "colors") -%>">
 	        <td style="text-align:center"><%= idea.name %></td>
-	        <td style="text-align:center"><%= idea.description %></td>
+	        <td style="text-align:center"><%= truncate(idea.description, length:7) { link_to "Continue", idea } %></td>	
 
 			<!-- USER -->
 
 		    <% if !idea.user.nil? %> 
-		        <td style="text-align:center"><%= idea.user %></td>
+		        <td style="text-align:center"><%= idea.user_id %></td>
 		    <% elsif %>
 		        <td></td>
 			<% end %>
@@ -33,15 +36,24 @@
 			<!-- IDEA DETAILS (IF FILTERED) -->
 		    <% if !idea.author.nil? %> 
 		        <td style="text-align:center"><%= idea.author %></td>
-		    <% end %>
+		    <% elsif %>
+		        <td></td>
+			<% end %>
 		    <% if !idea.url.nil? %> 
-		        <td style="text-align:center"><%= idea.url %></td>
-		    <% end %>
+		        <td style="text-align:center"><%= truncate(idea.url, length:10) { link_to "Continue", idea } %></td>
+
+		    <% elsif %>
+		        <td></td>
+			<% end %>
 		    <% if !idea.country.nil? %> 
 		        <td style="text-align:center"><%= idea.country %></td>
+			<% elsif %>
+		        <td></td>
 			<% end %>
 		  </tr>
 		<% end %>
+
+		<% reset_cycle("colors") %>
 	  </tbody>
 	</table>
 </div>
