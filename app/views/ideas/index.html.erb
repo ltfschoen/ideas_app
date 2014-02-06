@@ -48,8 +48,6 @@
 	        	<%= highlight(idea.name, params[:idea_name]) %>
 	        </td>
 
-	        	
-
 
 	        <td style="text-align:center"><%= truncate(idea.description, length:7) { link_to "Continue", idea } %></td>		
 
@@ -93,6 +91,7 @@
 
     	<% reset_cycle("colors") %>
 
+<%= will_paginate @ideas %>
 
 	<%# if !@lock_select_submit %>  
 <!--
