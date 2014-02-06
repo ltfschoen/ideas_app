@@ -44,7 +44,13 @@
 
 	  	<% @ideas.each do |idea| %>
 	      <tr style="background-color:<%= cycle("#ffeeff", "#cceeff", name: "colors") -%>">
-	        <td style="text-align:center"><%= idea.name %></td>
+	        <td style="text-align:center">
+	        	<%= highlight(idea.name, params[:idea_name]) %>
+	        </td>
+
+	        	
+
+
 	        <td style="text-align:center"><%= truncate(idea.description, length:7) { link_to "Continue", idea } %></td>		
 
 			<!-- USER -->

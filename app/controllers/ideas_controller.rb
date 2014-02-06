@@ -14,6 +14,7 @@ class IdeasController < ApplicationController
 
   	@stage = 1
 
+	# CHECKBOXES
 	if params[:filter_values].present?
     	@ideas = Idea.where(:id => params[:filter_values])
     	@lock_select = true
@@ -23,9 +24,15 @@ class IdeasController < ApplicationController
   		@lock_select = false
     	@lock_select_submit = false
     end
-
+	
+	# SEARCH FIELD
 	if params[:idea_name].present?
-    	@ideas = Idea.where(:name => params[:idea_name])
+    	#@ideas = Idea.where(:name => params[:idea_name])
+
+	    @x = "%#{params[:idea_name]}%"
+	    @ideas = Idea.where("name ilike ? or description ilike ?", @x.downcase, @x.downcase) unless params[:idea_name].blank?
+	    # @ideas = Idea.where("LOWER(description) like ?", x.downcase) unless params[:idea_name].blank?
+
     	@detail = false
     	@lock_select = true
     	@lock_select_submit = true
