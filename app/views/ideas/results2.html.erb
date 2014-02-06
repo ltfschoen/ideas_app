@@ -1,0 +1,55 @@
+<% provide(:title, 'Stage 4') %>
+	    	
+<%= hidden_field_tag 'stage4', true %>
+
+<h2>Chosen Ideas to Compare with Trending Keywords</h2>
+
+<div style="display: inline-block;">
+
+	<table style="border: 1px solid black; ">
+	  <thead>
+	    <tr>
+	      <th style="text-align:center">Name</th>
+		  <th style="text-align:center">Country</th>
+	    </tr>
+	  </thead>
+
+	  <tbody>
+
+	  	<% @ideas.each do |idea| %>
+	      <tr style="background-color:<%= cycle("#ffeeff", "#cceeff", name: "colors") -%>">
+	        <td style="text-align:center"><%= idea.name %></td>
+
+		    <% if !idea.country.nil? %> 
+		        <td style="text-align:center"><%= idea.country %></td>
+			<% elsif %>
+		        <td></td>
+			<% end %>
+		  </tr>
+
+		<% end %>
+
+		<% reset_cycle("colors") %>
+	  </tbody>
+	</table>
+</div>
+
+<h2>Results of Comparison</h2>
+
+<div style="display: inline-block;">
+	<p>Your ideas do not match any trends!</p>
+</div>
+
+<div class="sorting">
+
+<h2>Choose Action:</h2>
+
+			<p style="background-color: #ffbbee">
+				<ul>
+					<li><strong>List:</strong> <%= link_to 'Finish and Compare Other Ideas', '/', method: :get %> 
+				<!-- , data: { confirm: 'Are you sure?' } -->
+					</li>
+				</ul>
+			</p>
+
+</div>

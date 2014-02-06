@@ -73,7 +73,7 @@
 	    <% else %>
 	    	raise "error lock select"
         <% end %>
-        	
+        
 
 <!-- REMOVED 2 -->
 
@@ -138,7 +138,7 @@
 			</p>
 	<% end %>
     <% if !@lock_select_submit %>
-			<p>
+			<p style="background-color: #ffbbee">
 				<ul>
 					<li><strong><%= label_tag(:search, "Search or Filter:") %></strong>  
 			<%= text_field_tag(:idea_name) %>
@@ -166,7 +166,7 @@
 
 		<%= form_tag '/ideas/details', :method => 'post' do %>
 
-	  		<div>
+	  		<div style="background-color: #ffbbee">
 
 			    <p>
 			    	<% @ideas.each do |idea| %>

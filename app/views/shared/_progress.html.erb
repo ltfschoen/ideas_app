@@ -2,7 +2,27 @@
 
 <hr>
 
-<% if @stage == 2 %>
+<% if @stage == 4 %>
+
+	<div style="clear: left; background-color: #eeccff; width: 330px; padding: 10px;">
+		
+		<strong>Progress:</strong><br><br>
+		<span style="margin-left: 5px;">Stage 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 4</span>
+		<span style="margin-left: 65px;"><%= range_field_tag(:progress, 90, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
+
+	</div>
+
+<% elsif @stage == 3 %>
+
+	<div style="clear: left; background-color: #eeccff; width: 330px; padding: 10px;">
+		
+		<strong>Progress:</strong><br><br>
+		<span style="margin-left: 5px;">Stage 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 4</span>
+		<span style="margin-left: 65px;"><%= range_field_tag(:progress, 60, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
+
+	</div>
+
+<% elsif @stage == 2 %>
 
 	<div style="clear: left; background-color: #eeccff; width: 330px; padding: 10px;">
 		
@@ -21,5 +41,6 @@
 		<span style="margin-left: 65px;"><%= range_field_tag(:progress, 10, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
 
 	</div>
+
 
 <% end %>

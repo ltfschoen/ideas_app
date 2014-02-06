@@ -8,6 +8,8 @@ IdeasApp::Application.routes.draw do
   resources :ideas do
   	collection do
   		post :details
+  		post :results
+  		post :results2
   	end
   end
 

@@ -50,6 +50,34 @@ class IdeasController < ApplicationController
   	@stage = 2
   end
 
+  def results
+
+	
+    # ideas_names_mod = params[:ideas_names] #string
+    # @ideas_names = ideas_names_mod.gsub(/[' ']/, '+').capitalize
+    
+    # if params[:ideas_names].present? 
+    #     url_mod = "http://api.whatthetrend.com/api/v2/trends.json" # + @ideas_names
+    #     url_buffer = HTTParty.get(url_mod)
+    #     url_hash = JSON.parse(url_buffer) # uses Ruby to convert to hash
+    #     @twitter_trend = JSON.parse(url_buffer)["query"] # access value of year directly
+    #     #@display_movie = url_buffer
+    #     #binding.pry
+    #     #gem pry
+    #     #gem pry-debugger
+    # end
+	
+  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 5)
+
+  	@stage = 3
+  end
+
+  def results2
+  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 5)
+
+  	@stage = 4
+  end
+
   def show
   end
 
