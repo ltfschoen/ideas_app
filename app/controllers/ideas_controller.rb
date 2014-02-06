@@ -67,12 +67,12 @@ class IdeasController < ApplicationController
            url_mod = "http://api.whatthetrend.com/api/v2/trends.json"
            url_buffer = HTTParty.get(url_mod) # httparty passed as JSON and converted to hash
 		   @url_hash_val1 = url_buffer['trends']
-		   n = 0
+		   @p = 0
 		   @url_array_val1 = []
 		   @url_hash_val1.each do |val|
 				
-				@url_array_val1 << @url_hash_val1[n]['query']
-				n += 1
+				@url_array_val1 << @url_hash_val1[@p]['query']
+				@p += 1
 		   end
 
 		   @trend_count = 0
@@ -102,12 +102,12 @@ class IdeasController < ApplicationController
            url_mod = "http://api.whatthetrend.com/api/v2/locations/current.json"
            url_buffer = HTTParty.get(url_mod) # httparty passed as JSON and converted to hash
 		   @url_hash_val1 = url_buffer['locations']
-		   n = 0
+		   @n = 0
 		   @url_array_val1 = []
 		   @url_hash_val1.each do |val|
 			
-				@url_array_val1 << @url_hash_val1[n]['name'] # 'name' is the key in the hash from the API (i.e. name of country)
-				n += 1
+				@url_array_val1 << @url_hash_val1[@n]['name'] # 'name' is the key in the hash from the API (i.e. name of country)
+				@n += 1
 		   end
 
 		   @trend_count = 0
