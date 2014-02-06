@@ -2,7 +2,7 @@
 	    	
 <%= hidden_field_tag 'stage3', true %>
 
-<h2>Chosen Ideas to Compare with Trending Locations</h2>
+<h2>Chosen Ideas to Compare.</h2>
 
 <div style="display: inline-block;">
 
@@ -35,9 +35,19 @@
 </div>
 
 <h2>Results of Comparison</h2>
+<strong>@ideas_names_mod</strong><%= @ideas_names_mod %>
+<div style="display: inline-block; margin-left: 40px;">	
+	<h4><span style="background-color:#ccdddd;">Twitter's current trending terms</span> (refer to <a href="http://api.whatthetrend.com/">trends.format</a>):</h4>
+	<p style="margin-left: 20px;">The names and descriptions of your ideas compare with 
+	<span style="color:red;"><%= @trend_count %></span> trends,
+	including:
+		<ul>
+	 	<% @trend_array.each do |trend| %>
+	 		<li><%= trend %></li>
+	 	<% end %>
+		</ul>
+	</p>
 
-<div style="display: inline-block;">
-	<p>Your ideas do not match any trends!</p>
 </div>
 
 <div class="sorting">

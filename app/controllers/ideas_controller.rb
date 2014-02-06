@@ -51,21 +51,40 @@ class IdeasController < ApplicationController
   end
 
   def results
-
+    #binding.pry
+	#require 'pry'
+	#require 'pry-debugger'
+	#require 'httparty'
 	
-    # ideas_names_mod = params[:ideas_names] #string
-    # @ideas_names = ideas_names_mod.gsub(/[' ']/, '+').capitalize
-    
-    # if params[:ideas_names].present? 
-    #     url_mod = "http://api.whatthetrend.com/api/v2/trends.json" # + @ideas_names
-    #     url_buffer = HTTParty.get(url_mod)
-    #     url_hash = JSON.parse(url_buffer) # uses Ruby to convert to hash
-    #     @twitter_trend = JSON.parse(url_buffer)["query"] # access value of year directly
-    #     #@display_movie = url_buffer
-    #     #binding.pry
-    #     #gem pry
-    #     #gem pry-debugger
-    # end
+    #@ideas_names_mod = params[:ideas_names] #string
+    #@ideas_names = ideas_names_mod.gsub(/[' ']/, '+').capitalize
+	
+	@ideas_names_mod = params[:ideas_names] #string
+
+	#@ideas_names_mod = "#Smallzys"
+
+    if params[:ideas_names].present? 
+           url_mod = "http://api.whatthetrend.com/api/v2/trends.json"
+           url_buffer = HTTParty.get(url_mod) # httparty passed as JSON and converted to hash
+		   @url_hash_val1 = url_buffer['trends']
+		   n = 0
+		   @url_array_val1 = []
+		   @url_hash_val1.each do |val|
+				
+				@url_array_val1 << @url_hash_val1[n]['query']
+				n += 1
+		   end
+
+		   @trend_count = 0
+		   @trend_array = []
+		   @url_array_val1.each do |trend| # for each value in array of trend queries
+				#if trend.include?("#{@ideas_names_mod}")
+				if @ideas_names_mod.include?("#{trend}")
+					@trend_array << trend
+					@trend_count += 1
+				end	
+		   end
+	end
 	
   	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 5)
 
