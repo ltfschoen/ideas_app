@@ -40,7 +40,7 @@
 
 	<h4><span style="background-color:#ccdddd;">World current trending locations</span> (refer to <a href="http://api.whatthetrend.com/">locations/current</a>):</h4>
 	<p style="margin-left: 20px;">The locations of the authors of your ideas compare with 
-	<span style="color:red;"><%= @trend_count %> </span> trending locations,
+	<span style="color:red;"><%= @trend_count %> </span> (out of a total of <span style="color:red;"><%= @n %></span>) trending locations,
 	including:
 		<ul>
 	 	<% @trend_array.each do |trend| %>
@@ -77,7 +77,7 @@
         ]);
 
         // Set chart options
-        var options = {'title':'Proportion of your idea selections that are in the top Twitter trends!',
+        var options = {'title':'Proportion of your idea selections that are in the top trending locations globally!',
                        'width':400,
                        'height':300};
 

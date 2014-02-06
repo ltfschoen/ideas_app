@@ -39,7 +39,7 @@
 <div style="display: inline-block; margin-left: 40px;">	
 	<h4><span style="background-color:#ccdddd;">Twitter's current trending terms</span> (refer to <a href="http://api.whatthetrend.com/">trends.format</a>):</h4>
 	<p style="margin-left: 20px;">The names and descriptions of your ideas compare with 
-	<span style="color:red;"><%= @trend_count %></span> trends,
+	<span style="color:red;"><%= @trend_count %></span> trends (out of a total of <span style="color:red;"><%= @p %></span>),
 	including:
 		<ul>
 	 	<% @trend_array.each do |trend| %>
