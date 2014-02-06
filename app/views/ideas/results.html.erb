@@ -2,7 +2,7 @@
 	    	
 <%= hidden_field_tag 'stage3', true %>
 
-<h2>Chosen Ideas to Compare.</h2>
+<h2>Chosen Ideas</h2>
 
 <div style="display: inline-block;">
 
@@ -35,7 +35,7 @@
 </div>
 
 <h2>Results of Comparison</h2>
-<strong>@ideas_names_mod</strong><%= @ideas_names_mod %>
+<strong>@ideas_names_mod</strong><%= @ideas_names_mod %><br>
 <div style="display: inline-block; margin-left: 40px;">	
 	<h4><span style="background-color:#ccdddd;">Twitter's current trending terms</span> (refer to <a href="http://api.whatthetrend.com/">trends.format</a>):</h4>
 	<p style="margin-left: 20px;">The names and descriptions of your ideas compare with 
@@ -52,7 +52,7 @@
 
 <div class="sorting">
 
-<h2>Choose Action:</h2>
+<h2>Choose Next Action:</h2>
 
 		<%= form_tag '/ideas/results2', :method => 'post' do %>
 
@@ -62,6 +62,7 @@
 			    	<% @ideas.each do |idea| %>
 			    	<!-- HIDDEN FIELD TO CAPTURE IDEA KEYWORDS FOR COMPARE WITH API -->
 						<%= hidden_field_tag 'ideas_names[]', idea.name %>
+						<%= hidden_field_tag 'ideas_countries[]', idea.country %>
 					
 				    <% end %>
 
@@ -69,7 +70,7 @@
 				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Compare with Trending Keywords", data: { disable_with: "Please wait.." }) %>
 				    			<a href="http://api.whatthetrend.com/">
 <img src="http://api.whatthetrend.com/images/wtt_api_badge_120.png" border="0">
-</a>
+API Key: 7cc91b878725255c17253b207cfd2aa93ed03005</a>
 				    		</li>
 				    	</ul>
 				</p>

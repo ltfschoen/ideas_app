@@ -63,7 +63,7 @@
 
 <div class="sorting">
 
-<h2>Choose Action:</h2>
+<h2>Choose Next Action:</h2>
 
 		<%= form_tag '/ideas/results', :method => 'post' do %>
 
@@ -73,6 +73,7 @@
 			    	<% @ideas.each do |idea| %>
 			    	<!-- HIDDEN FIELD TO CAPTURE IDEA KEYWORDS FOR COMPARE WITH API -->
 						<%= hidden_field_tag 'ideas_names[]', idea.name %>
+						<%= hidden_field_tag 'ideas_countries[]', idea.country %>
 					
 				    <% end %>
 

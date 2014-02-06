@@ -92,6 +92,35 @@ class IdeasController < ApplicationController
   end
 
   def results2
+
+		
+	@ideas_locations_mod = params[:ideas_countries] #string
+
+	#@ideas_names_mod = "#Smallzys"
+
+    if params[:ideas_countries].present? 
+           url_mod = "http://api.whatthetrend.com/api/v2/locations/current.json"
+           url_buffer = HTTParty.get(url_mod) # httparty passed as JSON and converted to hash
+		   @url_hash_val1 = url_buffer['locations']
+		   n = 0
+		   @url_array_val1 = []
+		   @url_hash_val1.each do |val|
+			
+				@url_array_val1 << @url_hash_val1[n]['name'] # 'name' is the key in the hash from the API (i.e. name of country)
+				n += 1
+		   end
+
+		   @trend_count = 0
+		   @trend_array = []
+		   @url_array_val1.each do |trend| # for each value in array of trend country name queries
+				#if trend.include?("#{@ideas_locations_mod}")
+				if @ideas_locations_mod.include?("#{trend}")
+					@trend_array << trend
+					@trend_count += 1
+				end	
+		   end
+	end
+
   	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 5)
 
   	@stage = 4
@@ -158,6 +187,6 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:name, :description, :user_id)
+      params.require(:idea).permit(:name, :description, :user_id, :url, :author, :country)
     end
 end

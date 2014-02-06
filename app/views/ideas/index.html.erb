@@ -5,9 +5,9 @@
 	  	<%= form_tag '/ideas', :method => 'get' do %>
 
 <% if !@lock_select %>  
-	<h2>Listing ideas:</h2>
+	<h2>Listing Ideas:</h2>
 <% elsif @lock_select %>
-	<h2>Filtered ideas:</h2>
+	<h2>Filtered Ideas:</h2>
 <% else %>
 	raise "error title"
 <% end %>
@@ -127,7 +127,7 @@
 
 <div class="sorting">
 
-<h2>Choose Action:</h2>
+<h2>Choose Next Action:</h2>
 	<% if @lock_select_submit %>
 			<p style="background-color: #ff6699">
 				<ul>
