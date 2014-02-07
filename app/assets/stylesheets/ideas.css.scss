@@ -4,7 +4,38 @@
 
 @import "bootstrap";
 
-td {
-	width: 150px;
+// ALL
+
+
+
+// HEADER
+
+#nav {
+	width: 700px;
 }
+
+.bg-primary_ls_round {
+	-moz-border-radius: 20px; 
+	-webkit-border-radius: 20px;
+	border-radius: 20px; /* future proofing */
+}
+
+#progress {
+	vertical-align: top;
+}
+
+
+// BODY
+
+// TABLES
+
+.name_desc { width: 150px; }
+
+.auth_locn_url { width: 75px; }
+
+.user { width: 50px; }
+
+.worthy { width: 70px; }
+
+.show_edit { width: 30px; }
 

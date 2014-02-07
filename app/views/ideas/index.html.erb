@@ -16,12 +16,12 @@
 	<table style="border: 1px solid black; ">
 	  <thead>
 	    <tr>
-	      <th style="text-align:center">Name</th>
-	      <th style="text-align:center">Description</th>
-	      <th style="text-align:center">User</th>
+	      <th style="text-align:center" class="name_desc">Name</th>
+	      <th style="text-align:center" class="name_desc">Description</th>
+	      <th style="text-align:center" class="user">User</th>
 
 		<% if !@lock_select %>  
-		  <th style="text-align:center">Worthy?</th>
+		  <th style="text-align:center" class="worthy">Worthy?</th>
 	    <% elsif @lock_select %>
 	    	<td></td>
 	    <% else %>
@@ -33,8 +33,8 @@
 
 		  <!-- NOT SHOW WHEN UPLOADED TO HEROKU -->
 
-	      <th style="text-align:center;">Show</th>
-	      <th style="text-align:center;">Edit</th>
+	      <th style="text-align:center;" class="show_edit">Show</th>
+	      <th style="text-align:center;" class="show_edit">Edit</th>
 	      <!--<th style="text-align:center;">Destroy</th>-->
 
 	    </tr>
@@ -61,7 +61,7 @@
 			<!-- FORM TAGS -->
 
 		<% if !@lock_select %>  
-			<td style="text-align:center; vertical-align: top;">
+			<td style="text-align:center; vertical-align: top; background-color: #ffee99">
 		          <%= label_tag :filter, "" %>
 		          <%= check_box_tag 'filter_values[]', idea.id, false %>
 				  
@@ -128,45 +128,10 @@
 <div class="sorting">
 
 <h2>Choose Next Action:</h2>
-	<% if @lock_select_submit %>
-			<p style="background-color: #ff6699">
-				<ul>
-					<li><strong>List:</strong> <%= link_to 'Show All Ideas', '/', method: :get %> 
-				<!-- , data: { confirm: 'Are you sure?' } -->
-					</li>
-				</ul>
-			</p>
-	<% end %>
-    <% if !@lock_select_submit %>
-			<p style="background-color: #ffbbee">
-				<ul>
-					<li><strong><%= label_tag(:search, "Search or Filter:") %></strong>  
-			<%= text_field_tag(:idea_name) %>
-			<%= submit_tag("Search or Filter Ideas", data: { disable_with: "Please wait.." }, class: "btn btn-default") %>
-					</li>
-				</ul>
-			</p>
-	<% end %>
-	<% if @lock_select_submit %>
-			<p>
-				<ul>
-					<li><strong><%= label_tag(:search, "Search:") %></strong>  
-			<%= text_field_tag(:idea_name) %>
-			<%= submit_tag("Search Ideas", data: { disable_with: "Please wait.." }) %>
-					</li>
-				</ul>
-			</p>
-	<% end %>
-			<p>
-				<ul>
-				    <li><strong>Create:</strong> <%= link_to 'New Idea', new_idea_path %>
-				    </li>
-				</ul>
-			</p>
 
 		<%= form_tag '/ideas/details', :method => 'post' do %>
 
-	  		<div style="background-color: #ffbbee">
+	  		<div style="width: 600px;">
 
 			    <p>
 			    	<% @ideas.each do |idea| %>
@@ -176,7 +141,7 @@
 
 				    <% if @lock_select_submit %>  
 				    	<ul>
-				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }) %>
+				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }, class: "btn btn-success") %>
 				    		</li>
 				    	</ul>
 				    <% end %>
@@ -184,6 +149,48 @@
 
 			</div>
 		<% end %>
+
+
+
+    <% if !@lock_select_submit %>
+			<p style="background-color: #ffbbee">
+				<ul>
+					<li><strong><%= label_tag(:search, "Search:") %></strong>  
+			<%= text_field_tag(:idea_name) %>
+			<%= submit_tag("Filter Ideas", data: { disable_with: "Please wait.." }, class: "btn btn-primary") %>
+					</li>
+				</ul>
+			</p>
+	<% end %>
+	<% if @lock_select_submit %>
+			<p>
+				<ul>
+					<li><strong><%= label_tag(:search, "Search:") %></strong>  
+			<%= text_field_tag(:idea_name) %>
+			<%= submit_tag("Filter", data: { disable_with: "Please wait.." }, class: "btn btn-default") %>
+					</li>
+				</ul>
+			</p>
+	<% end %>
+
+	<% if @lock_select_submit %>
+			<p style="background-color: #ff6699">
+				<ul>
+					<li><strong>List:</strong> <%= link_to 'Show All Ideas', '/', method: :get %> 
+				<!-- , data: { confirm: 'Are you sure?' } -->
+					</li>
+				</ul>
+			</p>
+	<% end %>
+
+			<p>
+				<ul>
+				    <li><strong>Create:</strong> <%= link_to 'New Idea', new_idea_path %>
+				    </li>
+				</ul>
+			</p>
+
+
 </div>
 
 

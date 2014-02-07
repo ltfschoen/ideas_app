@@ -1,33 +1,77 @@
 <% provide(:title, 'Nav') %>
+<div style="width:700px;">
+	<div style="width:200px; display: inline-block; vertical-align: top" >
+		<div style="background: #eeddff; display: inline-block; vertical-align: top">
+			<%= image_tag image_url(@robot), style: 'border: 2px solid #44ff55', title: ':Trendmyhunch', width: 100, height: 50 %>
+		</div>
 
-<div style="background: #eeddff; display: inline-block;">
-	<%= image_tag image_url(@robot), style: 'border: 2px solid #44ff55', title: ':Trendmyhunch', width: 100, height: 50 %>
-</div>
-
-
-<div style="display: inline-block;"><%= link_to 'Help', static_pages_help_path %> | </div>
-<div style="display: inline-block;"><%= link_to 'Home', root_path %></div> 
-
-
-<div style="display: inline-block; clear: left;">
-
-<%# if controller.controller_name == "Ideas" %>
-<% if @stage == 1 %>
-
-	<div style="border:4px solid #ffdd99; display: inline-block; float:right; margin-left: 50px; z-index: -1; padding: 10px;">
-		<p style="width: 550px"><strong>Welcome and Intro:</strong><br><br>
-		Please review, select, and submit your choice of the best ideas. After your submission to proceed to more details, your selection will be compared against market trends and then used for displaying metrics and assessment for further investment consideration. </p>
-
-
-<% elsif @stage == 2 %>
-		<div style="border:4px solid #ffdd99; display: inline-block; float:right; margin-left: 100px; z-index: -1; padding: 10px;">
-		<p><strong>Inspect Your Favourite Ideas:</strong>
-			<br><br>
-		More details about your favourite ideas shown here! Click submit where you're ready to continue to compare the keywords of your favourite ideas with the latest trends and see the results!
-		</p>
-
-<% end %>
+		<div style="display: inline-block; vertical-align: top"><%= link_to 'Help', static_pages_help_path %> | </div>
+		<div style="display: inline-block; vertical-align: top"><%= link_to 'Home', root_path %></div>
+		<div style="background: #eeddff; display: inline-block; vertical-align: top">
+			<span><%= notice %></span>
+	        <span><%= alert %></span> <!-- flash[:alert] = "oops" -->
+		</div>
 	</div>
+
+	<div style="display: inline-block;">
+
+		<p class="vertical-align: top; padding: 0px; margin: 0px;">
+		<% if user_signed_in? %>
+		  | <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> |
+		  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+		  Logged in as <strong><%= current_user.email %></strong>.
+		<% else %>
+		  | <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+		  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+		<% end %>
+
+		<div id="progress" style="vertical-align: top;">
+
+  			<%= render partial:'/shared/progress' %>
+
+		</div>
+
+	</div>
+
+	<div style="display: inline-block; clear: left; vertical-align: top">
+
+	<%# if controller.controller_name == "Ideas" %>
+	<% if @stage == 1 && @lock_select_submit == false %>
+
+		<div style="display: inline-block; float:right; margin-left: 25px; z-index: -1; padding: 10px;">
+
+			<p style="display: inline-block; width: 550px; padding: 20px; vertical-align:top;" class="bg-primary bg-primary_ls_round"><strong>Instructions:</strong><br><br>
+			
+			In Stage 1 users review ideas from a list shared by lean entrepreneurs. Once they click the "Filter" button after entering text in the search field or ticking checkbox selections, their favourite ideas will appear in a filtered list.
+
+			To proceed Stage 2 and view more details the user must click the "Proceed to Detail" button.
+
+			Stages 3 and 4 are shown when the user clicks the "Proceed to Compare Trending Keywords" and "Proceed to Compare Trending Locations" respectively. 
+		
+			</p>
+		</div>
+
+	<% elsif @stage == 1 && @lock_select_submit == true %>
+
+		<div style="display: inline-block; float:right; margin-left: 25px; z-index: -1; padding: 10px;">
+			<p style="width: 550px; padding: 20px;" class="bg-primary bg-primary_ls_round"><strong>aWelcome:</strong><br><br>
+			Please review, select, and submit your choice of the best ideas. After your submission to proceed to more details, your selection will be compared against market trends and then used for displaying metrics and assessment for further investment consideration. </p>
+		</div>
+		
+
+	<% elsif @stage == 2 %>
+		<div style="border:4px solid #ffdd99; display: inline-block; float:right; margin-left: 25px; z-index: -1; padding: 10px;">
+			<p style="width: 550px; padding: 20px;" class="bg-primary bg-primary_ls_round"><strong>Inspect Your Favourite Ideas:</strong>
+				<br><br>
+			More details about your favourite ideas shown here! Click submit where you're ready to continue to compare the keywords of your favourite ideas with the latest trends and see the results!
+			</p>
+		</div>
+
+	<% end %>
+
+	</div>
+
+
 </div>
 
 	

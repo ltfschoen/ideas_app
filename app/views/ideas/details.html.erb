@@ -9,12 +9,12 @@
 	<table style="border: 1px solid black; ">
 	  <thead>
 	    <tr>
-	      <th style="text-align:center">Name</th>
-	      <th style="text-align:center">Description</th>
-	      <th style="text-align:center">User</th>
-		  <th style="text-align:center">Author</th>
-		  <th style="text-align:center">URL</th>
-		  <th style="text-align:center">Country</th>
+	      <th style="text-align:center" class="name_desc">Name</th>
+	      <th style="text-align:center" class="name_desc">Description</th>
+	      <th style="text-align:center" class="user">User</th>
+		  <th style="text-align:center" class="auth_locn_url">Author</th>
+		  <th style="text-align:center" class="auth_locn_url">URL</th>
+		  <th style="text-align:center;" class="auth_locn_url">Country</th>
 	    </tr>
 	  </thead>
 
@@ -78,7 +78,7 @@
 				    <% end %>
 
 				    	<ul>
-				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Comparison & Results", data: { disable_with: "Please wait.." }) %>
+				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Compare Trending Twitter Keywords", data: { disable_with: "Please wait.." }, class: "btn btn-success") %>
 				    			<a href="http://api.whatthetrend.com/">
 <img src="http://api.whatthetrend.com/images/wtt_api_badge_120.png" border="0">
 </a>

@@ -2,94 +2,98 @@
 	    	
 <%= hidden_field_tag 'stage3', true %>
 
-<h2>Chosen Ideas</h2>
+<div style="display: inline-block; vertical-align:top">
+	<h2>Chosen Ideas</h2>
 
-<div style="display: inline-block;">
+	<div style="display: inline-block;">
 
-	<table style="border: 1px solid black; ">
-	  <thead>
-	    <tr>
-	      <th style="text-align:center">Name</th>
-		  <th style="text-align:center">Country</th>
-	    </tr>
-	  </thead>
+		<table style="border: 1px solid black; ">
+		  <thead>
+		    <tr>
+		      <th style="text-align:center" class="name_desc">Name</th>
+			  <th style="text-align:center" class="auth_locn_url">Country</th>
+		    </tr>
+		  </thead>
 
-	  <tbody>
+		  <tbody>
 
-	  	<% @ideas.each do |idea| %>
-	      <tr style="background-color:<%= cycle("#ffeeff", "#cceeff", name: "colors") -%>">
-	        <td style="text-align:center"><%= idea.name %></td>
+		  	<% @ideas.each do |idea| %>
+		      <tr style="background-color:<%= cycle("#ffeeff", "#cceeff", name: "colors") -%>">
+		        <td style="text-align:center"><%= idea.name %></td>
 
-		    <% if !idea.country.nil? %> 
-		        <td style="text-align:center"><%= idea.country %></td>
-			<% elsif %>
-		        <td></td>
+			    <% if !idea.country.nil? %> 
+			        <td style="text-align:center"><%= idea.country %></td>
+				<% elsif %>
+			        <td></td>
+				<% end %>
+			  </tr>
+
 			<% end %>
-		  </tr>
 
-		<% end %>
-
-		<% reset_cycle("colors") %>
-	  </tbody>
-	</table>
+			<% reset_cycle("colors") %>
+		  </tbody>
+		</table>
+	</div>
 </div>
 
-<h2>Results of Comparison</h2>
-<strong>@ideas_names_mod</strong><%= @ideas_names_mod %><br>
-<div style="display: inline-block; margin-left: 40px;">	
-	<h4><span style="background-color:#ccdddd;">Twitter's current trending terms</span> (refer to <a href="http://api.whatthetrend.com/">trends.format</a>):</h4>
-	<p style="margin-left: 20px;">The names and descriptions of your ideas compare with 
-	<span style="color:red;"><%= @trend_count %></span> trends (out of a total of <span style="color:red;"><%= @p %></span>),
-	including:
-		<ul>
-	 	<% @trend_array.each do |trend| %>
-	 		<li><%= trend %></li>
-	 	<% end %>
-		</ul>
-	</p>
+<div style="display: inline-block; vertical-align:top">
+	<h2>Results of Comparison</h2>
 
-	    <!--Div that will hold the pie chart-->
+	<div style="display: inline-block; margin-left: 40px; width: 400px;">	
+		<h4><span style="background-color:#ccdddd;">Twitter's current trending terms</span> (refer to <a href="http://api.whatthetrend.com/">trends.format</a>):</h4>
+		<p style="margin-left: 20px;">The names and descriptions of your ideas compare with 
+		<span style="color:red;"><%= @trend_count %></span> trends (out of a total of <span style="color:red;"><%= @p %></span>),
+		including:
+			<ul>
+		 	<% @trend_array.each do |trend| %>
+		 		<li><%= trend %></li>
+		 	<% end %>
+			</ul>
+		</p>
 
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
+		    <!--Div that will hold the pie chart-->
 
-      // Load the Visualization API and the piechart package.
-      google.load('visualization', '1.0', {'packages':['corechart']});
+	    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	    <script type="text/javascript">
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.setOnLoadCallback(drawChart);
+	      // Load the Visualization API and the piechart package.
+	      google.load('visualization', '1.0', {'packages':['corechart']});
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
+	      // Set a callback to run when the Google Visualization API is loaded.
+	      google.setOnLoadCallback(drawChart);
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          <% @trend_array.each do |trend| %>
-          ['<%= trend %>', 1],
-          <% end %>
-          ['Total Trends', <%= @p - @trend_count %>]
-        ]);
+	      // Callback that creates and populates a data table,
+	      // instantiates the pie chart, passes in the data and
+	      // draws it.
+	      function drawChart() {
 
-        // Set chart options
-        var options = {'title':'Proportion of your idea selections that are in the top Twitter trends!',
-                       'width':400,
-                       'height':300};
+	        // Create the data table.
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('string', 'Topping');
+	        data.addColumn('number', 'Slices');
+	        data.addRows([
+	          <% @trend_array.each do |trend| %>
+	          ['<%= trend %>', 1],
+	          <% end %>
+	          ['Total Trends', <%= @p - @trend_count %>]
+	        ]);
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
+	        // Set chart options
+	        var options = {'title':'Proportion of your idea selections that are in the top Twitter trends!',
+	                       'width':400,
+	                       'height':300};
 
-    <p id="chart_div"></p>
+	        // Instantiate and draw our chart, passing in some options.
+	        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+	        chart.draw(data, options);
+	      }
+	    </script>
+
+	    <p id="chart_div"></p>
 
 
 
+	</div>
 </div>
 
 <div class="sorting">
@@ -109,7 +113,7 @@
 				    <% end %>
 
 				    	<ul>
-				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Compare with Trending Keywords", data: { disable_with: "Please wait.." }) %>
+				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Compare with Trending Locations", data: { disable_with: "Please wait.." }, class: "btn btn-success") %>
 				    			<a href="http://api.whatthetrend.com/">
 <img src="http://api.whatthetrend.com/images/wtt_api_badge_120.png" border="0">
 API Key: 7cc91b878725255c17253b207cfd2aa93ed03005</a>
