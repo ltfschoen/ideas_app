@@ -102,7 +102,7 @@
 
 		<%= form_tag '/ideas/results2', :method => 'post' do %>
 
-	  		<div style="background-color: #ffbbee">
+	  		<div>
 
 			    <p>
 			    	<% @ideas.each do |idea| %>
@@ -114,6 +114,8 @@
 
 				    	<ul>
 				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Compare with Trending Locations", data: { disable_with: "Please wait.." }, class: "btn btn-success") %>
+				    		</li>
+				    		<li>
 				    			<a href="http://api.whatthetrend.com/">
 <img src="http://api.whatthetrend.com/images/wtt_api_badge_120.png" border="0">
 API Key: 7cc91b878725255c17253b207cfd2aa93ed03005</a>
