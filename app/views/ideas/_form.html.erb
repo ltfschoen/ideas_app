@@ -13,30 +13,31 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :autofocus => true, :class => 'form-control input-sm', :placeholder => 'Name', :style => 'width:200px' %>
   </div>
 
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, :class => 'form-control', :rows => '2', :placeholder => 'Description', :style => 'width:200px' %>
   </div>
 
   <div class="field">
     <%= f.label :author %><br>
-    <%= f.text_area :author %>
+    <%= f.text_area :author, :class => 'form-control', :rows => '1', :placeholder => 'Author', :style => 'width:200px' %>
   </div>
 
   <div class="field">
     <%= f.label :url %><br>
-    <%= f.text_area :url %>
+    <%= f.text_area :url, :class => 'form-control', :rows => '1', :placeholder => 'URL', :style => 'width:200px' %>
   </div>
 
   <div class="field">
     <%= f.label :country %><br>
-    <%= f.text_area :country %>
+    <%= f.text_area :country, :class => 'form-control', :rows => '1', :placeholder => 'Country', :style => 'width:200px' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create Idea", :class => 'btn btn-success' %>
+
   </div>
 <% end %>

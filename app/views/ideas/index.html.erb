@@ -157,7 +157,7 @@
 				<ul>
 					<li><strong><%= label_tag(:search, "Search:") %></strong>  
 			<%= text_field_tag(:idea_name) %>
-			<%= submit_tag("Filter Ideas", data: { disable_with: "Please wait.." }, class: "btn btn-primary") %>
+			<%= submit_tag("Filter Ideas", data: { disable_with: "Please wait.." }, class: "btn btn-primary") %><span class="help-block">Enter a single keyword to search the listing of ideas.</span>
 					</li>
 				</ul>
 			</p>
@@ -185,7 +185,8 @@
 
 			<p>
 				<ul>
-				    <li><strong>Create:</strong> <%= link_to 'New Idea', new_idea_path %>
+				    <li><strong>Create:</strong> 
+				    	<%= button_tag(link_to 'New Idea', new_idea_path, class: "btn btn-default") %>
 				    </li>
 				</ul>
 			</p>

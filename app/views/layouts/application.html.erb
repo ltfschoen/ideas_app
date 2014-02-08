@@ -8,6 +8,42 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 
+ <script>
+	
+	$(window).resize(function(){
+		var viewportWidth = $(window).width();
+		$('#monitor').html(viewportWidth);
+	});
+
+	$('.typeahead').typeahead({
+		source: function (typeahead, query) {
+		 /* put your ajax call here..
+		 return $.get('/typeahead', { query: query }, function (data) {
+		    return typeahead.process(data);
+		 });
+		 */
+		 return ['alpha','beta','bravo','delta','epsilon','gamma','zulu'];
+		}
+	});
+	$("[data-toggle=popover]").popover();
+	$("[data-toggle=tooltip]").tooltip();
+	$('#myTab a').click(function (e) {
+		 e.preventDefault();
+		 $(this).tab('show');
+	});
+
+	$(function () {
+	$('#myTab a:last').tab('show');
+	})$('#openBtn').click(function(){
+		$('#myModal').modal({show:true})
+	});
+
+
+	/* alert pop-up with info about each stage */
+	$(".alert").addClass("in").fadeOut(3500);
+
+ </script>
+
 
 </head>
 <body>
@@ -15,6 +51,60 @@
 	<header>
 
 
+<nav class="navbar navbar-inverse" role="navigation">
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    
+    <a class="navbar-brand" href="#" style="color:#ff4499"><i class="glyphicon glyphicon-legal"><strong>Trendmyhunch</strong></i></a> 
+  </div>
+
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <% if @stage == 1 && @lock_select_submit == false %>
+      <li class="active"><%= link_to 'Home', root_path %></li>
+      <% else %>
+      <li><%= link_to 'Home', root_path %></li>
+      <% end %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+        <% if !user_signed_in? %>
+          <li><%= link_to "Login", new_user_session_path  %></li>	
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+		<% else %>
+          <li><%= link_to 'Edit Profile', edit_user_registration_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% end %>
+        </ul>
+      </li>
+    </ul>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><%= link_to 'Help', static_pages_help_path %></li>
+          <li><a href="#">Feedback</a></li>
+          <li><%= link_to 'About Us', static_pages_about_us_path %></li>
+          <li><%= link_to "Luke's Blog", 'http://lukeschoen.blogspot.com' %></li>
+          <li><%= link_to 'Contact Us', static_pages_contact_us_path %></li>
+          <li><%= link_to 'Partners', 'https://generalassemb.ly' %></li>
+        </ul>
+      </li>
+    </ul>
+    </div>
+   
+</nav>
 
 	</header>
 

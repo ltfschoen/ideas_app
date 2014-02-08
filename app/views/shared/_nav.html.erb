@@ -2,17 +2,18 @@
 <div style="width:700px;">
 	<div style="width:200px; display: inline-block; vertical-align: top; " >
 
-		<div style="display: inline-block; vertical-align: top; float:right;"> | &nbsp;<%= link_to 'Help', static_pages_help_path %></div>
-		<div style="display: inline-block; vertical-align: top; float:right;"><%= link_to 'Home', root_path %> &nbsp;</div>
+		<div style="display: inline-block; vertical-align: top; float:right;">
+			<!-- | &nbsp;-->
+			<%#= link_to 'Help', static_pages_help_path %></div>
+		<div style="display: inline-block; vertical-align: top; float:right;"><%#= link_to 'Home', root_path %> &nbsp;</div>
 		<div style="background: #eeddff; display: inline-block; vertical-align: top">
 		<br>
-		
 
-			<span><%= notice %></span>
+		<span><%= notice %></span>
 	        <span><%= alert %></span> <!-- flash[:alert] = "oops" -->
 		</div>
 		<div style="display: inline-block; vertical-align: top; float: right; margin: 10px;">
-			<span style="color:#aa5566"><strong><h3>Trendmyhunch</h3></strong></span>
+			<!--<span style="color:#aa5566"><strong><h3>Trendmyhunch</h2></strong></span>-->
 			<%= image_tag image_url(@robot), style: '', title: ':Trendmyhunch', width: 100, height: 100 %>
 		</div>
 
@@ -21,15 +22,20 @@
 	<div style="display: inline-block;">
 
 		<p class="vertical-align: top; padding: 0px; margin: 0px;">
-		<% if user_signed_in? %>
-		  | <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> |
-		  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-		  Logged in as <strong><%= current_user.email %></strong>.
-		<% else %>
-		  | <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-		  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-		<% end %>
 
+		<% if user_signed_in? %>         
+    		Logged in as <strong><%= current_user.email %></strong>
+    	<% end %>
+<!--
+		<%# if user_signed_in? %>
+		  | <%#= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %> |
+		  <%#= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+		  Logged in as <strong><%#= current_user.email %></strong>.
+		<%# else %>
+		  | <%#= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+		  <%#= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+		<%# end %>
+-->
 		<div id="progress" style="vertical-align: top;">
 
   			<%= render partial:'/shared/progress' %>
@@ -45,15 +51,27 @@
 
 		<div style="display: inline-block; float:right; margin-left: 25px; z-index: -1; padding: 10px;">
 
-			<p style="display: inline-block; width: 550px; padding: 20px; vertical-align:top;" class="bg-primary bg-primary_ls_round"><strong>Instructions:</strong><br><br>
-			
-			Stage 1: In Stage 1 users review ideas from a list shared by lean entrepreneurs. Once they click the "Filter" button after entering text in the search field or ticking checkbox selections, their favourite ideas will appear in a filtered list.
-<br><br>
-			Stage 2: To proceed Stage 2 and view more details the user must click the "Proceed to Detail" button.
-<br><br>
-			Stages 3 & 4: These stages are shown when the user clicks the "Proceed to Compare Trending Keywords" and "Proceed to Compare Trending Locations" respectively. 
+<div style="display: inline-block; width: 570px; padding: 20px; vertical-align:top; background: #eeaacc;" class="alert alert-info bg-primary bg-primary_ls_round">
+  <button type="button" class="close" data-dismiss="alert">x</button>
+<strong>Instructions:</strong>   &nbsp;&nbsp; Please read the guidelines below to reap maximum benefits.
+</div>
 		
-			</p>
+<div class="alert alert-info" style="max-width:570px">
+  <button type="button" class="close" data-dismiss="alert">x</button>
+  <strong>Stage 1:</strong> In Stage 1 users review ideas from a list shared by lean entrepreneurs. Once they click the "Filter" button after entering text in the search field or ticking checkbox selections, their favourite ideas will appear in a filtered list.
+</div>
+
+<div class="alert alert-info" style="max-width:570px">
+  <button type="button" class="close" data-dismiss="alert">x</button>
+  <strong>Stage 2:</strong> To proceed Stage 2 and view more details the user must click the "Proceed to Detail" button.
+</div>
+
+<div class="alert alert-info" style="max-width:570px">
+  <button type="button" class="close" data-dismiss="alert">x</button>
+  <strong>Stages 3 & 4:</strong> These stages are shown when the user clicks the "Proceed to Compare Trending Keywords" and "Proceed to Compare Trending Locations" respectively.
+</div>
+		
+			
 		</div>
 
 	<% elsif @stage == 1 && @lock_select_submit == true %>
