@@ -45,7 +45,7 @@
 
 #scrollContent{
 	height:186px;
-	overflow:auto;
+	overflow:false;
 	position:relative;
 }.navbar-collapse:before, .navbar-collapse:after{display:inline; content:"";}
 
