@@ -16,11 +16,11 @@ class IdeasController < ApplicationController
 
 	# CHECKBOXES
 	if params[:filter_values].present?
-    	@ideas = Idea.where(:id => params[:filter_values]).paginate(:page => params[:page], :per_page => 5)
+    	@ideas = Idea.where(:id => params[:filter_values]).paginate(:page => params[:page], :per_page => 10)
     	@lock_select = true
     	@lock_select_submit = true
   	elsif !params[:filter_values].present?
-  		@ideas = Idea.all.paginate(:page => params[:page], :per_page => 5)
+  		@ideas = Idea.all.paginate(:page => params[:page], :per_page => 10)
   		@lock_select = false
     	@lock_select_submit = false
     end
@@ -30,7 +30,7 @@ class IdeasController < ApplicationController
     	#@ideas = Idea.where(:name => params[:idea_name])
 
 	    @x = "%#{params[:idea_name]}%"
-	    @ideas = Idea.where("name ilike ? or description ilike ?", @x.downcase, @x.downcase).paginate(:page => params[:page], :per_page => 5) unless params[:idea_name].blank?
+	    @ideas = Idea.where("name ilike ? or description ilike ?", @x.downcase, @x.downcase).paginate(:page => params[:page], :per_page => 10) unless params[:idea_name].blank?
 	    #@ideas = Idea.where("name ilike ? or description ilike ?", @x.downcase, @x.downcase).paginate(:page => params[:page], :per_page => 5) unless params[:idea_name].blank?
 
     	@detail = false
@@ -45,7 +45,7 @@ class IdeasController < ApplicationController
   # GET /ideas/1.json
 
   def details
-  	@ideas = Idea.where(:id => params[:ideas_ids]).paginate(:page => params[:page], :per_page => 5)
+  	@ideas = Idea.where(:id => params[:ideas_ids]).paginate(:page => params[:page], :per_page => 10)
 
   	@stage = 2
   end
@@ -86,7 +86,7 @@ class IdeasController < ApplicationController
 		   end
 	end
 	
-  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 5)
+  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 10)
 
   	@stage = 3
   end
@@ -121,7 +121,7 @@ class IdeasController < ApplicationController
 		   end
 	end
 
-  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 5)
+  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 10)
 
   	@stage = 4
   end

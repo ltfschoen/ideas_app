@@ -2,7 +2,7 @@
 
 <!-- FORM START -->
 
-	  	<%= form_tag '/ideas#form', :method => 'get' do %>
+	  	<%= form_tag '/ideas#form', :name => 'form1', :method => 'get' do %>
 
 <a name="anchor" id="form" ></a>
 <% if !@lock_select %>  
@@ -88,9 +88,11 @@
 	    
 
 	      </tr>
+
 	    <% end %>
 
     	<% reset_cycle("colors") %>
+
 
 <%= will_paginate @ideas %>
 
@@ -115,6 +117,33 @@
 	<%# end %>
 -->
 
+
+<!-- SELECT ALL START -->
+<% if !@lock_select_submit %>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;<label for="selectall" id="selectControl">Select All</label>
+    &nbsp;<input type="checkbox" id="selectall" />
+
+<script>
+    function Check(frm){
+      var checkBoxes = frm.elements['filter_values[]'];
+      for (i = 0; i < checkBoxes.length; i++){
+        checkBoxes[i].checked = (selectControl.innerHTML == "Select All") ? 'checked' : '';
+      }
+      selectControl.innerHTML = (selectControl.innerHTML == "Select All") ? "Unselect All" : 'Select All';
+    }
+    
+    window.onload = function(){
+      var selectControl = document.getElementById("selectall");
+      selectControl.onclick = function(){Check(document.form1)};
+    };
+  </script>
+
+<% end %>
+
+<!-- SELECT ALL END -->
 
 		<% end %> 
 <!-- FORM END -->
