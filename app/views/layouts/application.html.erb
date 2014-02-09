@@ -121,6 +121,16 @@
 		<%= yield %>
 
 	</div>
+
+	<div id="ga">
+
+		<% if Rails.env.production? %>
+  		<%= render partial:'/shared/ga' %>
+		<% end %>
+		
+	</div>
+
+
 	<footer>
 
   		<%= render partial:'/shared/footer' %>
