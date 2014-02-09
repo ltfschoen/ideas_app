@@ -93,8 +93,8 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Info <b class="caret"></b></a>
         <ul class="dropdown-menu">
+		  <li><a href="#myModal" role="button" class="btn btn-default" data-toggle="modal" style="text-align: left">Feedback</a></li>
           <li><%= link_to 'Help', static_pages_help_path %></li>
-          <li><a href="#">Feedback</a></li>
           <li><%= link_to 'About Us', static_pages_about_us_path %></li>
 		  <li><%= link_to 'Google Analytics', ga_ideas_path %></li>
           <li><%= link_to "Luke's Blog", 'http://lukeschoen.blogspot.com' %></li>
@@ -106,6 +106,43 @@
     </div>
    
 </nav>
+
+
+	<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="zoom: 1.25; filter: alpha(opacity=50); opacity: 0.9; background-color: #99aaee;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+			<%= form_for('/user_mailer', :method => 'post', :url => feedback_message_user_mailer_index_path(:name, :email, :message) ) do |f| %>
+			<%#= devise_error_messages! %>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h3 id="myModalLabel">Feedback Message &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= f.submit "Send", :class => 'btn btn-success' %><br>
+					<h5><span style="color:red">WARNING: THIS FEATURE IS NOT YET FUNCTIONAL</span></h5>
+					</h3>
+
+				</div>
+
+				<div class="modal-body">
+					<%= f.label :message%>
+					<%= f.text_field :message, :class => 'form-control input-sm', :placeholder => 'Please help us by telling us how to improve the website…', :style => 'width:400px' %>		
+				</div>
+
+  				<div class="modal-body"><%= f.label :name%><br />
+  					<%= f.text_field :name, :class => 'form-control input-sm', :placeholder => 'Your Name', :style => 'width:400px' %>
+  				</div>
+ 
+				<div class="modal-body">
+				  	<%= f.label :email %><br />
+  					<%= f.email_field :email, :class => 'form-control input-sm', :placeholder => 'Your Email Address', :style => 'width:400px' %>
+  				</div>
+
+			<% end %>
+
+			</div>
+		</div>
+	</div>
+
+
 
 	</header>
 

@@ -169,6 +169,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 1.2)
   jquery-rails
+  mail
   pg
   rails (= 4.0.2)
   rails_12factor

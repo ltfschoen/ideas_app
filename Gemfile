@@ -44,6 +44,7 @@ gem 'signet'
 #gem 'dashing-rails'
 #gem 'puma'
 #gem 'redis', '3.0.7'
+gem 'mail'
 
 gem 'will_paginate', '~> 3.0.5'
 

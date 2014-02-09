@@ -4,7 +4,15 @@ IdeasApp::Application.routes.draw do
   get "static_pages/about_us"
   get "static_pages/contact_us"
   get "static_pages/help"
+
   resources :categories
+
+  resources :user_mailer do
+  	collection do
+  		# post :welcome_email
+  		post :feedback_message
+  	end
+  end
 
   resources :ideas do
   	collection do
@@ -12,6 +20,7 @@ IdeasApp::Application.routes.draw do
   		post :results
   		post :results2
   		get :ga # google analytics
+  		post :feedback
   	end
   end
 
