@@ -10,6 +10,7 @@ IdeasApp::Application.routes.draw do
   		post :details
   		post :results
   		post :results2
+  		get :ga # google analytics
   	end
   end
 

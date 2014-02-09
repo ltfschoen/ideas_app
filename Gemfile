@@ -38,6 +38,10 @@ group :production do
 	gem "rails_12factor"
 end
 
+# google analytics in ideas controller 
+gem 'google-api-client'
+gem 'signet'
+
 gem 'will_paginate', '~> 3.0.5'
 
 gem 'httparty'

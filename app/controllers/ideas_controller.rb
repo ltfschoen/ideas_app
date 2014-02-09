@@ -38,11 +38,71 @@ class IdeasController < ApplicationController
     	@lock_select_submit = true
     end
 
-
   end
 
   # GET /ideas/1
   # GET /ideas/1.json
+
+	# ALTERNATIVE METHOD
+    # client = Google::APIClient.new
+    # key = Google::APIClient::PKCS12.load_key('/8d0773ca8bbf2d7c40c2dd94acefff12e6c8ad26-privatekey.p12', 'notasecret') # this is where you load the key
+    # now initialize the asserter with the client ID and authorise scopes
+    # service_account = Google::APIClient::JWTAsserter.new(
+    #     '637735728925-6iuhhhvh29u4snmopca7c89s63n8hdj7@developer.gserviceaccount.com',
+    #     'https://www.googleapis.com/auth/prediction',
+    #     key)
+    # OR TRY 'https://www.googleapis.com/auth/analytics.readonly'
+    # client.authorization = service_account.authorize
+    # OR TRY client.authorization = service_account.authorize()
+    # puts client.authorization.access_token
+
+	# constants for method 'ga' must be assigned outside the method
+
+
+
+  def ga
+
+	# START GOOGLE ANALYTICS
+
+	require 'fileutils'
+	require 'rubygems'
+    require 'google/api_client'
+    #require 'google/api_client/client_secrets'
+    require 'google/api_client/auth/installed_app'
+
+	service_account_email_address = '637735728925-6iuhhhvh29u4snmopca7c89s63n8hdj7@developer.gserviceaccount.com' 
+	path_to_key_file = Rails.root.join("8d0773ca8bbf2d7c40c2dd94acefff12e6c8ad26-privatekey.p12") 
+	profile = 'ga:81951999' # GA profile id, looks like 'ga:12345'
+
+	# set up a client instance
+	client = Google::APIClient.new(:application_name => 'Trendmyhunch',
+  :application_version => '1.0.0')
+
+	client.authorization = Signet::OAuth2::Client.new(
+	  :token_credential_uri => 'https://accounts.google.com/o/oauth2/token',
+	  :audience             => 'https://accounts.google.com/o/oauth2/token',
+	  :scope                => 'https://www.googleapis.com/auth/analytics.readonly',
+	  :issuer               => service_account_email_address,
+	  :signing_key          => Google::APIClient::KeyUtils.load_from_pkcs12(path_to_key_file, 'notasecret')
+	).tap { |auth| auth.fetch_access_token! }
+
+#:signing_key          => Google::APIClient::PKCS12.load_key(path_to_key_file, 'notasecret')
+
+	api_method = client.discovered_api('analytics','v3').data.ga.get
+
+	# make queries
+	@result = client.execute(:api_method => api_method, :parameters => {
+	  'ids'        => profile,
+	  'start-date' => Date.new(2005,2,2).to_s,
+	  'end-date'   => Date.today.to_s,
+	  'dimensions' => 'ga:pagePath',
+	  'metrics'    => 'ga:pageviews',
+	  'filters'    => 'ga:pagePath==/' # i.e. root directory
+	})
+
+	# END GOOGLE ANALYTICS
+
+  end
 
   def details
   	@ideas = Idea.where(:id => params[:ideas_ids]).paginate(:page => params[:page], :per_page => 10)
