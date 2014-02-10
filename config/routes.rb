@@ -23,7 +23,7 @@ IdeasApp::Application.routes.draw do
   		post :results
   		post :results2
   		get :ga # google analytics
-  		# post :mailer
+  		post :mailer
   	end
   end
 

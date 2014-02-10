@@ -1,14 +1,14 @@
 class UserMailer < ActionMailer::Base
-  default from: "no-reply@trendmyhunch.herokuapp.com"
+  # default from: "no-reply@trendmyhunch.herokuapp.com"
   #, :set_business_headers
 
-  def feedback_message(name, email, message)
-    @url  = 'http://trendmyhunch.herokuapp.com'
-    mail(to: email,
-    	 body: message,
-    	 subject: "Feedback from Trendmyhunch!"
-    	)
-  end
+  # def feedback_message(name, email, message)
+  #   @url  = 'http://trendmyhunch.herokuapp.com'
+  #   mail(to: email,
+  #   	 body: message,
+  #   	 subject: "Feedback from Trendmyhunch!"
+  #   	)
+  # end
 
   # def welcome_email(user, email_body)
   #   @user = user

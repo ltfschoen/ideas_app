@@ -60,15 +60,15 @@ class IdeasController < ApplicationController
 	# constants for method 'ga' must be assigned outside the method
 
 
-  def mailer
-	#@temp = params[:record]
+   def mailer
+	# #@temp = params[:record]
 
-  @record = ModelMailer.new
+ #  @record = ModelMailer.new
     
-  if @record.save
-    ModelMailer.new_record_notification(@record).deliver
-    redirect_to @record
-  end
+ #  if @record.save
+ #    ModelMailer.new_record_notification(@record).deliver
+ #    redirect_to @record
+ #  end
 
 
     #  	if params[:name].present? && params[:email].present? && params[:message].present?   
@@ -97,7 +97,7 @@ class IdeasController < ApplicationController
 	# 	flash[:alert] = "oops not all fields entered"
 	# end
 
-  end
+   end
 
   def ga
 

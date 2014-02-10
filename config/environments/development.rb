@@ -1,14 +1,14 @@
 IdeasApp::Application.configure do
 
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-  :authentication => :plain,
-  :address => "smtp.mailgun.org",
-  :port => 587,
-  :domain => "trendmyhunch.herokuapp.com",
-  :user_name => "postmaster@trendmyhunch.herokuapp.com",
-  :password => "2cg5cqzgtj71"
-}
+# config.action_mailer.delivery_method = :smtp
+# config.action_mailer.smtp_settings = {
+#   :authentication => :plain,
+#   :address => "smtp.mailgun.org",
+#   :port => 587,
+#   :domain => "trendmyhunch.herokuapp.com",
+#   :user_name => "postmaster@trendmyhunch.herokuapp.com",
+#   :password => "2cg5cqzgtj71"
+# }
 
   # Settings specified here will take precedence over those in config/application.rb.
 
