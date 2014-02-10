@@ -10,7 +10,7 @@ IdeasApp::Application.routes.draw do
   resources :user_mailer do
   	collection do
   		# post :welcome_email
-  		post :feedback_message
+  		get :feedback_message
   	end
   end
 
@@ -20,7 +20,7 @@ IdeasApp::Application.routes.draw do
   		post :results
   		post :results2
   		get :ga # google analytics
-  		post :feedback
+  		post :mailer
   	end
   end
 

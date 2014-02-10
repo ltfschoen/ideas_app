@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]	
+  #skip_before_action :idea_params!, only: [:mailer]
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
 
   # GET /ideas
@@ -58,7 +59,32 @@ class IdeasController < ApplicationController
 
 	# constants for method 'ga' must be assigned outside the method
 
+  def mailer
+  	if params[:name].present? && params[:email].present? && params[:message].present?   
+		@name = params[:name]
+		@email = params[:email]
+	  	@message = params[:message]
 
+	  	@feedback = UserMailer.feedback_message(@name, @email, @message).deliver 
+		if @feedback
+			raise "true"
+		elsif !@feedback
+			raise "false"
+		end
+
+	  	# call /app/mailer/user_mailer.rb
+	    respond_to do |format|
+	      if @feedback
+	        format.html { redirect_to feedback_message_user_mailer_index_path, notice: 'Feedback was successfully created.' }
+	      else
+				flash[:notice] = "oops"
+	      end
+	    end
+
+	else
+		flash[:alert] = "oops not all fields entered"
+	end
+  end
 
   def ga
 

@@ -112,12 +112,18 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 
-			<%= form_for('/user_mailer', :method => 'post', :url => feedback_message_user_mailer_index_path(:name, :email, :message) ) do |f| %>
+			<%= form_for('/ideas/mailer', :method => 'post', :url => mailer_ideas_path ) do |f| %>
 			<%#= devise_error_messages! %>
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 					<h3 id="myModalLabel">Feedback Message &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= f.submit "Send", :class => 'btn btn-success' %><br>
 					<h5><span style="color:red">WARNING: THIS FEATURE IS NOT YET FUNCTIONAL</span></h5>
+					<% if flash[:alert].present? %>
+					<h1 style="color:red">Please check all fields completed before submitting feedback.</h1>
+					<% end %>
+					<% if flash[:notice].present? %>
+					<h1 style="color:red">Error sending mail.</h1>
+					<% end %>
 					</h3>
 
 				</div>
