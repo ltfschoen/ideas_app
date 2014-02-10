@@ -6,9 +6,11 @@ class ModelMailer < ActionMailer::Base
   #
   #   en.model_mailer.new_record_notification.subject
   #
-  def new_record_notification(record)
-    @record = record
-    mail to: "ltfschoen@gmail.com"
-    subject: "Success! You did it."
-  end
+
+  
+  # def new_record_notification(record)
+  #   @record = record
+  #   mail to: "ltfschoen@gmail.com"
+  #   subject: "Success! You did it."
+  # end
 end

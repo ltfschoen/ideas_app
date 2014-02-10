@@ -15,7 +15,7 @@ IdeasApp::Application.routes.draw do
   # end
 
   #resources :enquiries 
-  resources :enquiry_mail
+  # resources :enquiry_mail
 
   resources :ideas do
   	collection do
@@ -23,7 +23,7 @@ IdeasApp::Application.routes.draw do
   		post :results
   		post :results2
   		get :ga # google analytics
-  		post :mailer
+  		# post :mailer
   	end
   end
 
