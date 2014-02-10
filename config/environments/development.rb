@@ -1,18 +1,14 @@
 IdeasApp::Application.configure do
 
-  # REPLICATE IN PRODUCTION FILE!
-
-require 'mail'
-
-  config.action_mailer.delivery_method = :sendmail
-  # Defaults to:
-  # config.action_mailer.sendmail_settings = {c
-  #   location: '/usr/sbin/sendmail',
-  #   arguments: '-i -t'
-  # }
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'no-reply@trendmyhunch.herokuapp.com'}
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+  :authentication => :plain,
+  :address => "smtp.mailgun.org",
+  :port => 587,
+  :domain => "trendmyhunch.herokuapp.com",
+  :user_name => "postmaster@trendmyhunch.herokuapp.com",
+  :password => "2cg5cqzgtj71"
+}
 
   # Settings specified here will take precedence over those in config/application.rb.
 

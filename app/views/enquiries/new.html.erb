@@ -1,0 +1,25 @@
+<%# if @enquiry.errors.any? %>
+  <%# @enquiry.errors.full_messages.each do |msg| %>
+    <%#= msg %>
+  <%# end %>
+<%# end %>
+
+<%= @a.class %>
+<%= @enquiry.class %>
+
+
+<%#= form_tag '/enquiries/create', :method => 'post' do |f| %>
+<%= form_for @enquiry, :url => {:action => "create"} do |f| %>
+
+  <p>
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
+  </p>
+
+  <!--<p>
+    <%#= f.label :body %>
+    <%#= f.text_area :body %>
+  </p>-->
+
+  <%= f.submit 'Send' %>
+<% end %>

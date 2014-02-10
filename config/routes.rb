@@ -7,12 +7,15 @@ IdeasApp::Application.routes.draw do
 
   resources :categories
 
-  resources :user_mailer do
-  	collection do
-  		# post :welcome_email
-  		get :feedback_message
-  	end
-  end
+  # resources :user_mailer do
+  # 	collection do
+  # 		# post :welcome_email
+  # 		get :feedback_message
+  # 	end
+  # end
+
+  #resources :enquiries 
+  resources :enquiry_mail
 
   resources :ideas do
   	collection do
@@ -25,7 +28,7 @@ IdeasApp::Application.routes.draw do
   end
 
   devise_for :users
-  
+
   root 'ideas#index'
 
 end

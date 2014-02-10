@@ -17,21 +17,21 @@ class IdeasController < ApplicationController
 
 	# CHECKBOXES
 	if params[:filter_values].present?
-    	@ideas = Idea.where(:id => params[:filter_values]).paginate(:page => params[:page], :per_page => 10)
+    	@ideas = Idea.where(:id => params[:filter_values]).paginate(:page => params[:page], :per_page => 15)
     	@lock_select = true
     	@lock_select_submit = true
   	elsif !params[:filter_values].present?
-  		@ideas = Idea.all.paginate(:page => params[:page], :per_page => 10)
+  		@ideas = Idea.all.paginate(:page => params[:page], :per_page => 15)
   		@lock_select = false
     	@lock_select_submit = false
     end
-	
+
 	# SEARCH FIELD
 	if params[:idea_name].present?
     	#@ideas = Idea.where(:name => params[:idea_name])
 
 	    @x = "%#{params[:idea_name]}%"
-	    @ideas = Idea.where("name ilike ? or description ilike ?", @x.downcase, @x.downcase).paginate(:page => params[:page], :per_page => 10) unless params[:idea_name].blank?
+	    @ideas = Idea.where("name ilike ? or description ilike ?", @x.downcase, @x.downcase).paginate(:page => params[:page], :per_page => 15) unless params[:idea_name].blank?
 	    #@ideas = Idea.where("name ilike ? or description ilike ?", @x.downcase, @x.downcase).paginate(:page => params[:page], :per_page => 5) unless params[:idea_name].blank?
 
     	@detail = false
@@ -59,31 +59,44 @@ class IdeasController < ApplicationController
 
 	# constants for method 'ga' must be assigned outside the method
 
+
   def mailer
-  	if params[:name].present? && params[:email].present? && params[:message].present?   
-		@name = params[:name]
-		@email = params[:email]
-	  	@message = params[:message]
+	#@temp = params[:record]
 
-	  	@feedback = UserMailer.feedback_message(@name, @email, @message).deliver 
-		if @feedback
-			raise "true"
-		elsif !@feedback
-			raise "false"
-		end
+  @record = ModelMailer.new
+    
+  if @record.save
+    ModelMailer.new_record_notification(@record).deliver
+    redirect_to @record
+  end
 
-	  	# call /app/mailer/user_mailer.rb
-	    respond_to do |format|
-	      if @feedback
-	        format.html { redirect_to feedback_message_user_mailer_index_path, notice: 'Feedback was successfully created.' }
-	      else
-				flash[:notice] = "oops"
-	      end
-	    end
 
-	else
-		flash[:alert] = "oops not all fields entered"
-	end
+    #  	if params[:name].present? && params[:email].present? && params[:message].present?   
+	# 	@name = params[:name]
+	# 	@email = params[:email]
+	#   	@message = params[:message]
+
+	#   	UserMailer.feedback_message(@name, @email, @message).deliver
+
+	# 	if @feedback
+	# 		raise "true"
+	# 	elsif !@feedback
+	# 		raise "false"
+	# 	end
+
+	#   	# call /app/mailer/user_mailer.rb
+	#     respond_to do |format|
+	#       if @feedback
+	#         format.html { redirect_to feedback_message_user_mailer_index_path, notice: 'Feedback was successfully created.' }
+	#       else
+	# 			flash[:notice] = "oops"
+	#       end
+	#     end
+
+	# else
+	# 	flash[:alert] = "oops not all fields entered"
+	# end
+
   end
 
   def ga
@@ -131,7 +144,7 @@ class IdeasController < ApplicationController
   end
 
   def details
-  	@ideas = Idea.where(:id => params[:ideas_ids]).paginate(:page => params[:page], :per_page => 10)
+  	@ideas = Idea.where(:id => params[:ideas_ids]).paginate(:page => params[:page], :per_page => 15)
 
   	@stage = 2
   end
@@ -172,7 +185,7 @@ class IdeasController < ApplicationController
 		   end
 	end
 	
-  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 10)
+  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 15)
 
   	@stage = 3
   end
@@ -207,7 +220,7 @@ class IdeasController < ApplicationController
 		   end
 	end
 
-  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 10)
+  	@ideas = Idea.where(:name => params[:ideas_names]).paginate(:page => params[:page], :per_page => 15)
 
   	@stage = 4
   end
