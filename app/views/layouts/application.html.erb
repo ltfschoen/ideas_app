@@ -2,12 +2,15 @@
 <html>
 <head>
   <title>IdeasApp | <%= yield(:title) %></title>
-
-
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 
+ 	<style>
+    	.js .info_slide { display: none; } /* // */
+    	.close { cursor: pointer; } /* cursor hand/pointer/help/move/progress */
+    </style>
+ 
  <script>
 	
 	$(window).resize(function(){
@@ -37,7 +40,6 @@
 	})$('#openBtn').click(function(){
 		$('#myModal').modal({show:true})
 	});
-
 
 	/* alert pop-up with info about each stage */
 	$(".alert").addClass("in").fadeOut(3500);
@@ -186,5 +188,6 @@
 
 	</footer>
 
+	<script type="text/javascript" src="./jquery.js"></script>
 </body>
 </html>
