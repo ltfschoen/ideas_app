@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails trendmyhunch: development" uuid="4c1b0b95-c291-4a26-9184-1151327c09b2">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails trendmyhunch: test" uuid="1e9f3634-8dff-4773-afc7-83893a9a006b">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source source="LOCAL" name="Rails trendmyhunch: production" uuid="1c1b48b1-776e-4b30-988a-f42d99c532e3">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

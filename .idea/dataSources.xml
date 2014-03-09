@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="810353982">
+    <data-source source="LOCAL" name="Rails trendmyhunch: development" uuid="4c1b0b95-c291-4a26-9184-1151327c09b2">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:ideas_app_development</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails trendmyhunch: test" uuid="1e9f3634-8dff-4773-afc7-83893a9a006b">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:ideas_app_test</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails trendmyhunch: production" uuid="1c1b48b1-776e-4b30-988a-f42d99c532e3">
+      <driver-ref>postgresql</driver-ref>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql:ideas_app_production</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+
