@@ -1,4 +1,6 @@
 IdeasApp::Application.routes.draw do
+  resources :comments
+
   resources :weblinks
 
   resources :posts
