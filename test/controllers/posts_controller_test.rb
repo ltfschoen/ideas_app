@@ -1,9 +1,30 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionController::TestCase
+
+  # You include the helpers from Warden, 
+  # which is what Devise uses, then run into test mode. 
+  # After that, you can use login_as for login. 
+  # And remember to Warden.test_reset! after each test.
+  include Warden::Test::Helpers
+  Warden.test_mode!
+
   setup do
+
+    #@user = FactoryGirl.create(:user, :email => 'test@gmail.com')
+    @user = users(:fred)
+    login_as(@user, :scope => :user)
+
     @post = posts(:freds_post)
   end
+
+  # teardown do
+  #   Warden.test_reset!
+  # end
+
+  # test "already login" do
+  #   visit root_path
+  # end
 
   test "should get index" do
     get :index
@@ -18,7 +39,7 @@ class PostsControllerTest < ActionController::TestCase
 
   test "should create post" do
     assert_difference('Post.count') do
-      post :create, post: { body: @post.body, email: rand(100).to_s, user_id: @post.user_id }
+      post :create, post: { body: @post.body, email: @post.email, user_id: @post.user_id }
     end
 
     assert_redirected_to post_path(assigns(:post))

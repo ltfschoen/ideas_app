@@ -2,5 +2,4 @@
 
 freds_post:
   user: fred
-  title: Fred
   body: MyText

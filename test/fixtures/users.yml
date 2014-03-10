@@ -13,6 +13,4 @@
 fred: # like an instance variable
   name: Fred # meaningful names
   email: fred@bedrock.com
-  password: yabba
-  address: 55 Pebble Lane
-  bio: Yabba dabba
+  encrypted_password: yabba

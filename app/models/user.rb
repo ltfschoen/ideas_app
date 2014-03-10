@@ -6,15 +6,5 @@ class User < ActiveRecord::Base
   
   has_many :ideas
 
-  # make test pass
-  after_create :send_welcome_email
-
-
-  def send_welcome_email
-  	# we need to create tests for the below functionality
-	UserMailer.welcome(self).deliver
-	# mailer.deliver
-  end
-
 end
 

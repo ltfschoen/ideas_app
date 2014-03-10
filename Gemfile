@@ -70,6 +70,7 @@ group :test do
 	gem 'simplecov', :require => false
 end
 
+gem 'rspec'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

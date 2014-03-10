@@ -61,7 +61,7 @@ class IdeasController < ApplicationController
 
 
    def mailer
-	# #@temp = params[:record]
+   #@temp = params[:record]
 
  #  @record = ModelMailer.new
     
@@ -70,12 +70,14 @@ class IdeasController < ApplicationController
  #    redirect_to @record
  #  end
 
+    #if params[:name].present? && params[:email].present? && params[:body.present?   
+	
+	# form inputs from application.rb modal
+	# @name = params[:name]
+	# @email = params[:email]
+	# @body = params[:body]
 
-    #  	if params[:name].present? && params[:email].present? && params[:message].present?   
-	# 	@name = params[:name]
-	# 	@email = params[:email]
-	#   	@message = params[:message]
-
+	# UserMailer.welcome(@name, @email, @message)
 	#   	UserMailer.feedback_message(@name, @email, @message).deliver
 
 	# 	if @feedback

@@ -1,0 +1,31 @@
+<h1>Listing weblinks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weblinks.each do |weblink| %>
+      <tr>
+        <td><%= weblink.name %></td>
+        <td><%= weblink.url %></td>
+        <td><%= weblink.user %></td>
+        <td><%= link_to 'Show', weblink %></td>
+        <td><%= link_to 'Edit', edit_weblink_path(weblink) %></td>
+        <td><%= link_to 'Destroy', weblink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Weblink', new_weblink_path %>

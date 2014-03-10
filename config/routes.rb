@@ -1,4 +1,6 @@
 IdeasApp::Application.routes.draw do
+  resources :weblinks
+
   resources :posts
 
   #mount Dashing::Engine, at: Dashing.config.engine_path

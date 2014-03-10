@@ -114,7 +114,8 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 
-			<%= form_for('/ideas/mailer', :method => 'post', :url => mailer_ideas_path ) do |f| %>
+			<%#= form_for('/ideas/mailer', :method => 'post', :url => mailer_ideas_path ) do |f| %>
+			<%= form_for(Post.new, :method => 'post', :url => posts_path ) do |f| %>
 			<%#= devise_error_messages! %>
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -130,19 +131,21 @@
 
 				</div>
 
-				<div class="modal-body">
-					<%= f.label :record%>
-					<%= f.text_field :record, :class => 'form-control input-sm', :placeholder => 'enter record for TESTING ONLY', :style => 'width:400px' %>		
-				</div>
+					<%= f.hidden_field :user_id, :value => current_user.id %>
+
+<!-- 			<div class="modal-body">
+					<%#= f.label :record%>
+					<%#= f.text_field :record, :class => 'form-control input-sm', :placeholder => 'enter record for TESTING ONLY', :style => 'width:400px' %>		
+				</div> -->
 
 				<div class="modal-body">
-					<%= f.label :message%>
-					<%= f.text_field :message, :class => 'form-control input-sm', :placeholder => 'Please help us by telling us how to improve the website…', :style => 'width:400px' %>		
+					<%= f.label :body%>
+					<%= f.text_field :body, :class => 'form-control input-sm', :placeholder => 'Please help us by telling us how to improve the website…', :style => 'width:400px' %>		
 				</div>
 
-  				<div class="modal-body"><%= f.label :name%><br />
-  					<%= f.text_field :name, :class => 'form-control input-sm', :placeholder => 'Your Name', :style => 'width:400px' %>
-  				</div>
+<!--   				<div class="modal-body"><%#= f.label :name%><br />
+  					<%#= f.text_field :name, :class => 'form-control input-sm', :placeholder => 'Your Name', :style => 'width:400px' %>
+  				</div> -->
  
 				<div class="modal-body">
 				  	<%= f.label :email %><br />
