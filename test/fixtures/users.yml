@@ -4,8 +4,15 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+#one: {}
 # column: value
 #
-two: {}
+#two: {}
 #  column: value
+
+fred: # like an instance variable
+  name: Fred # meaningful names
+  email: fred@bedrock.com
+  password: yabba
+  address: 55 Pebble Lane
+  bio: Yabba dabba

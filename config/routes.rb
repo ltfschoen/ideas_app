@@ -1,4 +1,6 @@
 IdeasApp::Application.routes.draw do
+  resources :posts
+
   #mount Dashing::Engine, at: Dashing.config.engine_path
   get "static_pages/home"
   get "static_pages/about_us"
