@@ -2,7 +2,8 @@ require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
   setup do
-    @category = categories(:one)
+    @category = categories(:freds_category) 
+    # fixture name defined in categories
   end
 
   test "should get index" do

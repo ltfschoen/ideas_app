@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
   has_many :ideas
+  has_many :weblinks
+  has_many :posts
+  has_many :comments 
 
 end
 

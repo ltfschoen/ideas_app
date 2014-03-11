@@ -151,7 +151,9 @@ class IdeasController < ApplicationController
   	@stage = 2
   end
 
-  def results
+  def results 
+  # method in my controller to compare inputs (i.e. an array of words) with keywords contained in the values field of an API's JSON file (the value of a hash, where the hash is an element of an array, where the array is the value of a key from an outer hash) 
+
     #binding.pry
 	#require 'pry'
 	#require 'pry-debugger'
@@ -161,23 +163,30 @@ class IdeasController < ApplicationController
     #@ideas_names = ideas_names_mod.gsub(/[' ']/, '+').capitalize
 	
 	@ideas_names_mod = params[:ideas_names] #string
+	# array containing words to compare with API keywords
 
 	#@ideas_names_mod = "#Smallzys"
 
     if params[:ideas_names].present? 
+    # check array (hidden fields from ERB file) not nil and not empty
            url_mod = "http://api.whatthetrend.com/api/v2/trends.json"
            url_buffer = HTTParty.get(url_mod) # httparty passed as JSON and converted to hash
 		   @url_hash_val1 = url_buffer['trends']
+		   # retrieve the contents of the hash key named 'trends'
 		   @p = 0
+		   # count total number of API keys in the hash array value (associated with the hash key)
 		   @url_array_val1 = []
+		   # initialise an array to store the contents of the 'query' values from the API
 		   @url_hash_val1.each do |val|
-				
+		   # transfer each 'query' value to the array (top Twitter trends)
 				@url_array_val1 << @url_hash_val1[@p]['query']
 				@p += 1
+				# count total matches between my words and keywords in API hash
 		   end
 
 		   @trend_count = 0
 		   @trend_array = []
+		   # initialise an array to store the API 'query' values that matching my words
 		   @url_array_val1.each do |trend| # for each value in array of trend queries
 				#if trend.include?("#{@ideas_names_mod}")
 				if @ideas_names_mod.include?("#{trend}")
