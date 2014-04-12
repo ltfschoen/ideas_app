@@ -1,9 +1,30 @@
 require 'test_helper'
 
 class IdeasControllerTest < ActionController::TestCase
+
+  # You include the helpers from Warden, 
+  # which is what Devise uses, then run into test mode. 
+  # After that, you can use login_as for login. 
+  # And remember to Warden.test_reset! after each test.
+  include Warden::Test::Helpers
+  Warden.test_mode!
+
   setup do
+
+    #@user = FactoryGirl.create(:user, :email => 'test@gmail.com')
+    @user = users(:fred)
+    login_as(@user, :scope => :user)
+
     @idea = ideas(:one)
   end
+
+  # teardown do
+  #   Warden.test_reset!
+  # end
+
+  # test "already login" do
+  #   visit root_path
+  # end
 
   test "should get index" do
     get :index

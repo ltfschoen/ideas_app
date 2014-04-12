@@ -9,5 +9,11 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments 
 
+  belongs_to :referred_by, class_name: 'User' #
+  has_many :referrals, class_name: 'User', foreign_key: 'referred_by_id'
+
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+
 end
 

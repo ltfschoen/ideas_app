@@ -2,10 +2,6 @@
 
 one:
   body: MyText
-  user_id: 
-  commentable_id: 
+  user_id: 1 # put in the test comments controller 
+  commentable_id: 1 # put in the test comments controller 
 
-two:
-  body: MyText
-  user_id: 
-  commentable_id: 

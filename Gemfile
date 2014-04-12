@@ -57,6 +57,9 @@ gem 'bootstrap-sass'
 gem 'turbolinks'
 
 group :test do
+
+	gem 'rspec'
+
 	# for better tests
 	gem 'shoulda'
 	
@@ -68,9 +71,10 @@ group :test do
 
 	# simple code-coverage tool
 	gem 'simplecov', :require => false
+
 end
 
-gem 'rspec'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

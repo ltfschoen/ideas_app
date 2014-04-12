@@ -1,5 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 freds_post:
-  user: fred
+  user_id: 2
   body: MyText
+  email: fred@fred1.com

@@ -6,7 +6,6 @@ class UserMailerTest < ActionMailer::TestCase
 
   	setup do
   		@user = users(:fred)
-  		@mail = UserMailer.welcome(@user) # welcome needs to take extra argument
   	end
 
   	should "set up default variables" do
@@ -16,7 +15,7 @@ class UserMailerTest < ActionMailer::TestCase
 	end
 
   	should "deliver the email" do
-		@mail.deliver
+		UserMailer.welcome(@user).deliver
 		# class that sends mail is ActionMailer::Base.deliveries 
 		# stores mail in array called 'deliveries'
 		refute_empty ActionMailer::Base.deliveries	

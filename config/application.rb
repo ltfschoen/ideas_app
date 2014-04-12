@@ -25,5 +25,7 @@ module IdeasApp
     # config.i18n.default_locale = :de
     config.i18n.enforce_available_locales = true
     #I18n.enforce_available_locales = false
+    # http://edgeguides.rubyonrails.org/security.html
+    config.filter_parameters << :password
   end
 end

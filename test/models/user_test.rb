@@ -1,6 +1,18 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+
+  context "associations" do
+  	should have_many :posts
+  	should have_many :referrals
+  	should have_many :referred_by
+  end
+
+  context "validations" do
+  	should validate_presence_of :name
+  	should validate_presence_of :email
+  	should validate_uniqueness_of :email
+  end
   # test "the truth" do
   #   assert true
   # end
