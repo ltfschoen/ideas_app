@@ -131,6 +131,11 @@
 					.on('click', this.close);
 				$('.info_slide').hide();
 				$('#hide').hide();
+				
+				// check if on first page where 'info_slide' tag exists, else hide the 'show instructions' button, as instructions shown by default on later pages
+				if ($('.info_slide').html() == undefined) {
+					$('#show').hide();
+				}
 			},
 
 			show: function() {
