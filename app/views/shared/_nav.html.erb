@@ -116,19 +116,21 @@
 			container: $('.info_slide'),
 
 			init: function(config) {
-
+				
 				$.extend(this.config, config); // use existing one as default, or if user provides a speed it will override
-
+				
 				console.log("starting!!!");
-				$('<button>', { text: 'Show Instructions' }) // on-click is attached to this button
+				$('<button>', { text: 'Show Instructions', class: "btn btn-success", id: "show" }) // on-click is attached to this button
 					.insertAfter('#robot')
 					.on('click', this.show);
 
 					console.log("in anonymous function, clicked contact me");
 
-				$('<span>', { text: 'Hide', class: 'close' })
+				$('<span>', { text: 'Hide', class: 'close', id: "hide" })
 					.prependTo(this.container)
 					.on('click', this.close);
+				$('.info_slide').hide();
+				$('#hide').hide();
 			},
 
 			show: function() {
@@ -139,11 +141,14 @@
 					if (container.is(':hidden')) { //pseudo selector
 
 						container[config.transition](config.speed);
+						$('#show').hide();
+						$('#hide').show();
 					}
 			},
 
 			close: function() {
 					contactForm.container[contactForm.config.transition](contactForm.config.speed);
+						$('#show').show();
 			}
 		}
 		contactForm.init({ // user override
