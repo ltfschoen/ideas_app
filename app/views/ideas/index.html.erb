@@ -45,12 +45,12 @@
 
 	  	<% @ideas.each do |idea| %>
 	      <tr style="background-color:<%= cycle("#ffeeff", "#cceeff", name: "colors") -%>">
-	        <td style="text-align:center">
+	        <td style="text-align:center" class="idea_table_main">
 	        	<%= highlight(idea.name, params[:idea_name]) %>
 	        </td>
 
 
-	        <td style="text-align:center"><%= truncate(idea.description, length:7) { link_to "Continue", idea } %></td>		
+	        <td style="text-align:center"><%= truncate(idea.description, length:10) { link_to "Continue", idea } %></td>		
 
 			<!-- USER -->
 			      <% if !idea.user.nil? %> 
@@ -171,7 +171,7 @@
 
 				    <% if @lock_select_submit %>  
 				    	<ul>
-				    		<li><strong>Next:</strong> <%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }, class: "btn btn-success") %>
+				    		<li><strong><span class="label_tag">Next:</span></strong> <%= submit_tag("Proceed to Detail", data: { disable_with: "Please wait.." }, class: "btn btn-success") %>
 				    		</li>
 				    	</ul>
 				    <% end %>
@@ -182,9 +182,9 @@
 
 
     <% if !@lock_select_submit %>
-			<p style="background-color: #ffbbee">
+			<p style="background-color: #ffbbee; ">
 				<ul>
-					<li><strong><%= label_tag(:search, "Search:") %></strong>  
+					<li><strong><%= label_tag(:search, "Search:", class: "label_tag") %></strong>  
 			<%= text_field_tag(:idea_name) %>
 			<%= submit_tag("Filter Ideas", data: { disable_with: "Please wait.." }, class: "btn btn-primary") %><span class="help-block">Enter a single keyword to search the listing of ideas.</span>
 					</li>
@@ -194,7 +194,7 @@
 	<% if @lock_select_submit %>
 			<p>
 				<ul>
-					<li><strong><%= label_tag(:search, "Search:") %></strong>  
+					<li><strong><%= label_tag(:search, "Search:", class: "label_tag") %></strong>  
 			<%= text_field_tag(:idea_name) %>
 			<%= submit_tag("Filter", data: { disable_with: "Please wait.." }, class: "btn btn-default") %>
 					</li>
@@ -205,7 +205,7 @@
 	<% if @lock_select_submit %>
 			<p style="background-color: #ff6699">
 				<ul>
-					<li><strong>List:</strong> <%= link_to 'Show All Ideas', '/#form', method: :get, id: 'anchor_source' %> 
+					<li><strong><span class="label_tag">List:</span></strong> <%= link_to 'Show All Ideas', '/#form', method: :get, id: 'anchor_source' %> 
 				<!-- , data: { confirm: 'Are you sure?' } -->
 					</li>
 				</ul>
@@ -214,7 +214,7 @@
 
 			<p>
 				<ul>
-				    <li><strong>Create:</strong> 
+				    <li><strong><span class="label_tag">Create:</span></strong> 
 				    	<%= button_tag(link_to 'New Idea', new_idea_path, class: "btn btn-default") %>
 				    </li>
 				</ul>

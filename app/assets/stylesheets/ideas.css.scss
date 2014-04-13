@@ -31,15 +31,27 @@
 
 // TABLES
 
-.name_desc { width: 150px; }
+.name_desc { width: 150px; font-weight: bold; font-size: 1.3em; }
 
-.auth_locn_url { width: 75px; }
+.auth_locn_url { width: 75px; font-weight: bold; font-size: 1.3em; }
 
-.user { width: 50px; }
+.user { width: 50px; font-weight: bold; font-size: 1.3em; }
 
-.worthy { width: 70px; }
+.worthy { width: 70px; font-weight: bold; font-size: 1.3em; }
 
-.show_edit { width: 30px; }
+.show_edit { width: 30px; font-weight: bold; font-size: 1.3em; color: #888888; }
+
+.idea_table_main {
+	color: #9922ff;
+}
+
+.help-block {
+	color: #cccccc;
+}
+
+.label_tag {
+	font-weight: bold; font-size: 1.3em; 
+}
 
 // CSS BAR AT TOP
 
