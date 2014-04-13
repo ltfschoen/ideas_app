@@ -198,14 +198,17 @@ class IdeasController < ApplicationController
 	#@ideas_names_mod = "#Smallzys"
 
     if params[:ideas_countries].present? 
-           url_mod = "http://api.whatthetrend.com/api/v2/locations/current.json"
+           #url_mod = "http://api.whatthetrend.com/api/v2/locations/current.json"
+           url_mod = "http://api.whatthetrend.com/api/v2/trends/locations/top.json?place_type_code=12"
            url_buffer = HTTParty.get(url_mod) # httparty passed as JSON and converted to hash
-		   @url_hash_val1 = url_buffer['locations']
+		   #@url_hash_val1 = url_buffer['locations']
+		   @url_hash_val1 = url_buffer['trends']
 		   @n = 0
 		   @url_array_val1 = []
 		   @url_hash_val1.each do |val|
 			
-				@url_array_val1 << @url_hash_val1[@n]['name'] # 'name' is the key in the hash from the API (i.e. name of country)
+				#@url_array_val1 << @url_hash_val1[@n]['name'] # 'name' is the key in the hash from the API (i.e. name of country)
+				@url_array_val1 << @url_hash_val1[@n]['place_name']
 				@n += 1
 		   end
 
