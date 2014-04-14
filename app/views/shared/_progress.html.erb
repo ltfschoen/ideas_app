@@ -2,60 +2,60 @@
 
 <% if @stage == 4 %>
 
-	<div style="clear: left; background-color: #eeeeff; width: 400px; padding: 10px; vertical-align: top; border-radius: 80px;">
+	<div style="clear: left; background-color: #eeeeff; width: 380px; padding: 10px; vertical-align: top; border-radius: 80px;">
 		
 		<div style="padding-right: 7px; display: inline-block; vertical-align: top; ">
-			<br><br><strong><span class="label_tag"><u>Progress:</u></span></strong>
+			&nbsp;&nbsp;<strong><span class="label_tag"><u>Progress:</u></span></strong>
 		</div>
 		<div style="display: inline-block;">
 			<span style="margin-left: 5px;">Stage 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Stage 4</strong></span>
-			<br>
-			<span style="margin-left: 65px;"><%= range_field_tag(:progress, 90, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
+			
+			<span style="margin-left: 0px;"><%= range_field_tag(:progress, 90, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
 		</div>
 
 	</div>
 
 <% elsif @stage == 3 %>
 
-	<div style="clear: left; background-color: #eeeeff; width: 400px; padding: 10px; vertical-align: top; border-radius: 80px;">
+	<div style="clear: left; background-color: #eeeeff; width: 380px; padding: 10px; vertical-align: top; border-radius: 80px;">
 		
 		<div style="padding-right: 7px; display: inline-block; vertical-align: top;">
-			<br><br><strong><span class="label_tag"><u>Progress:</u></span></strong>
+			&nbsp;&nbsp;<strong><span class="label_tag"><u>Progress:</u></span></strong>
 		</div>
 		<div style="display: inline-block;">
 			<span style="margin-left: 5px;">Stage 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Stage 3</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 4</span>
-			<br>
-			<span style="margin-left: 65px;"><%= range_field_tag(:progress, 60, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
+			
+			<span style="margin-left: 0px;"><%= range_field_tag(:progress, 60, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
 		</div>
 
 	</div>
 
 <% elsif @stage == 2 %>
 
-	<div style="clear: left; background-color: #eeeeff; width: 400px; padding: 10px; vertical-align: top; border-radius: 80px;">
+	<div style="clear: left; background-color: #eeeeff; width: 380px; padding: 10px; vertical-align: top; border-radius: 80px;">
 		
 		<div style="padding-right: 7px; display: inline-block; vertical-align: top;">
-			<br><br><strong><span class="label_tag"><u>Progress:</u></span></strong>
+			&nbsp;&nbsp;<strong><span class="label_tag"><u>Progress:</u></span></strong>
 		</div>
 		<div style="display: inline-block;">
 			<span style="margin-left: 5px;">Stage 1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Stage 2</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 4</span>
-			<br>
-			<span style="margin-left: 65px;"><%= range_field_tag(:progress, 35, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
+			
+			<span style="margin-left: 0px;"><%= range_field_tag(:progress, 35, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
 		</div>
 
 	</div>
 
 <% elsif @stage == 1 %>
 
-	<div style="clear: left; background-color: #eeeeff; width: 400px; padding: 10px; vertical-align: top; border-radius: 80px;">
+	<div style="clear: left; background-color: #eeeeff; width: 380px; padding: 10px; vertical-align: top; border-radius: 80px;">
 		
 		<div style="padding-right: 7px; display: inline-block; vertical-align: top;">
-			<br><br><strong><span class="label_tag"><u>Progress:</u></span></strong>
+			&nbsp;&nbsp;<strong><span class="label_tag"><u>Progress:</u></span></strong>
 		</div>
 		<div style="display: inline-block;">
 			<span style="margin-left: 5px;"><strong>Stage 1</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stage 4</span>
-			<br>
-			<span style="margin-left: 65px;"><%= range_field_tag(:progress, 10, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
+			
+			<span style="margin-left: 0px;"><%= range_field_tag(:progress, 10, :min => 0, :max => 100, disabled: true, id: 'progress') %></span>
 		</div>
 
 	</div>
