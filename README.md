@@ -19,6 +19,8 @@ Technologies Used:
 -------
 * Git
 * Ruby on Rails
+* JavaScript
+* jQuery
 * PostgreSQL
 * WhatTheTrend API
 * Devise
