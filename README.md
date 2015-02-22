@@ -62,7 +62,7 @@ Play with the App
 ----------
  - Clone or fork the repo 
    ```
-     git clone [https://github.com/ltfschoen/ideas_app.git](https://github.com/ltfschoen/ideas_app.git)
+     git clone https://github.com/ltfschoen/ideas_app.git
    ```
  - Install Gemfile Dependencies 
    ```
