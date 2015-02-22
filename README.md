@@ -60,7 +60,10 @@ https://github.com/ltfschoen/ideas_app/blob/master/app/controllers/ideas_control
 
 Play with the App
 ----------
- - Clone or fork the repo [https://github.com/ltfschoen/ideas_app.git](https://github.com/ltfschoen/ideas_app.git)
+ - Clone or fork the repo 
+   ```
+     git clone [https://github.com/ltfschoen/ideas_app.git](https://github.com/ltfschoen/ideas_app.git)
+   ```
  - Install Gemfile Dependencies 
    ```
      bundle install
