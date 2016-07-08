@@ -72,7 +72,7 @@ Play with the App
    ```
  - Run PostgreSQL (Seed and Migrate the DB)
    ```
-     rake db:setup
+     bundle exec rake db:setup
    ```
  - Run the WEBrick Server
    ```
