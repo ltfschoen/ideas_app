@@ -82,4 +82,13 @@ Play with the App
 
 Production
 ----------
+
 http://trendmyhunch.herokuapp.com/
+
+- Fix failing production if necessary:
+
+  ```
+    heroku login
+    heroku git:remote --app trendmyhunch
+    heroku restart
+  ```
